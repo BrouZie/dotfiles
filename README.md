@@ -11,14 +11,14 @@ git clone https://github.com/BrouZie/dotfiles.git
 ### Viktige nedlastinger:
 
 Aller først:
-´´´bash
+```bash
 sudo dnf tmux
-´´´
+```
 
 Deretter trenger vi en jøvla tmux pluginmanager:
-´´´bash
+```bash
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-´´´
+```
 
 (Valgfritt):
 git pull nyeste neovim-homebrew - dette er valgfritt ettersom du
@@ -33,26 +33,24 @@ Aller først bør du gjør som følger:
 (kan skippes hvis nvim er up to date)
 
 - Slett din nåværende nvim config:
-´´´bash
+```bash
 rm -rf ~/.config/nvim
-´´´
+```
 
 - cd inn i repo ´´dotfiles´´ og kjør kommando:
-´´´bash
+```bash
 stow nvim
-´´´
+```
 Åpne nvim og sørg for at alt er lastet ned av plugins
-´´´:Lazy´´´ vil åpne pluginmanager for nvim
+```:Lazy``` vil åpne pluginmanager for nvim
 
 
 - Nå kan tmux legges til også! (samme som med nvim):
-´´´bash
+```bash
 stow tmux
-´´´
+```
 Åpne tmux ved å skrive ´´´tmux´´´ i terminalen!
 
 Trykk på: "'ctrl + space' I" (NB: stor I, ikke liten)
 
 ### Tmux info:
-
-
