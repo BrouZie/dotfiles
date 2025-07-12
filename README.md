@@ -1,4 +1,5 @@
 # Til KasperBby
+(Call me for spørsmål)
 
 ### Nedlasting av repository:
 
@@ -53,7 +54,8 @@ stow tmux
 ```
 Åpne tmux ved å skrive ```tmux``` i terminalen!
 
-For å laste ned tmux plugins --> "ctrl + space + I"  (NB: stor I, ikke liten)
+For å laste ned tmux plugins: "ctrl + space + I"  (NB: stor I, ikke liten)
+Flere nyttige binds lenger nede!
 
 
 
@@ -63,10 +65,10 @@ ANBEFALT!: Se informativ youtube video på tmux:
 [Se den her:](https://www.youtube.com/watch?v=Yl7NFenTgIo)
 
 
-Så og si alle keybinds starter med en <prefix>!
+Så og si alle keybinds starter med en **prefix**!
 
-Default prefix er <ctrl-b>, men når du har fått oppdatert tmux vil din nye prefix
-være <ctrl-space>
+Default prefix er: <kbd>Ctrl+b</kbd>, men når du har fått oppdatert tmux vil din nye prefix
+være: <kbd>Ctrl+Space</kbd>
 
 ## Keybinds / Kommandoer
 
@@ -77,23 +79,23 @@ Etter pluginsoppdatering!:
 
 ### Konfigurasjon & plugins (TPM)
 - <kbd>prefix</kbd> + <kbd>r</kbd>: Reload tmux-config  
-- <kbd>prefix</kbd> + <kbd>I</kbd>: Installer/oppdater plugins (TPM) :contentReference[oaicite:0]{index=0}  
-- <kbd>prefix</kbd> + <kbd>U</kbd>: Oppdater alle plugins (TPM) :contentReference[oaicite:1]{index=1}  
-- <kbd>prefix</kbd> + <kbd>Alt+u</kbd>: Avinstaller plugins ikke i listen (TPM) :contentReference[oaicite:2]{index=2}  
+- <kbd>prefix</kbd> + <kbd>I</kbd>: Installer/oppdater plugins (TPM)
+- <kbd>prefix</kbd> + <kbd>U</kbd>: Oppdater alle plugins (TPM)
+- <kbd>prefix</kbd> + <kbd>Alt+u</kbd>: Avinstaller plugins ikke i listen (TPM)
 
 ### Deling av vinduer (panes)
 - <kbd>prefix</kbd> + <kbd>v</kbd>: Horisontal split (side-ved-side)  
 - <kbd>prefix</kbd> + <kbd>s</kbd>: Vertikal split (oppe/nede)  
 
 ### Navigering
-- <kbd>prefix</kbd> + <kbd>h</kbd>/<kbd>j</kbd>/<kbd>k</kbd>/<kbd>l</kbd>: Flytt fokus pane venstre/ned/opp/høyre  
+- <kbd>Ctrl</kbd> + <kbd>h</kbd>/<kbd>j</kbd>/<kbd>k</kbd>/<kbd>l</kbd>: Flytt fokus pane venstre/ned/opp/høyre  
 - <kbd>Alt+h</kbd>: Forrige vindu  
 - <kbd>Alt+l</kbd>: Neste vindu  
 
 ### Lukk & bytt størrelse
 - <kbd>Ctrl+c</kbd>: Kill window  
 - <kbd>Ctrl+q</kbd>: Kill pane  
-- <kbd>prefix</kbd> + <kbd>h</kbd>/<kbd>j</kbd>/<kbd>k</kbd>/<kbd>l</kbd> (holdbar): Resize pane 5 celler i valgt retning  
+- <kbd>prefix</kbd> + <kbd>h</kbd>/<kbd>j</kbd>/<kbd>k</kbd>/<kbd>l</kbd>: forandre pane størrelser
 
 ### Nye vinduer & omdøping
 - <kbd>prefix</kbd> + <kbd>Enter</kbd>: Nytt vindu  
@@ -104,13 +106,13 @@ Etter pluginsoppdatering!:
 - I copy-mode: <kbd>v</kbd> (start markering), <kbd>y</kbd> (kopier markering)  
 
 ### Plugin-spesifikke binds
-- <kbd>prefix</kbd> + <kbd>o</kbd>: Åpne SessionX (session-manager) :contentReference[oaicite:3]{index=3}  
-  - I SessionX: <kbd>Ctrl+p</kbd>/<kbd>Ctrl+n</kbd> naviger opp/ned i listen :contentReference[oaicite:4]{index=4}  
-- <kbd>Ctrl+h</kbd>/<kbd>Ctrl+j</kbd>/<kbd>Ctrl+k</kbd>/<kbd>Ctrl+l</kbd>: SØmløs navigering mellom Vim-splitt og tmux-pane (vim-tmux-navigator) :contentReference[oaicite:5]{index=5}  
-- <kbd>prefix</kbd> + <kbd>Ctrl+s</kbd>: Lagre sesjon (tmux-resurrect) :contentReference[oaicite:6]{index=6}  
-- <kbd>prefix</kbd> + <kbd>Ctrl+r</kbd>: Gjenopprett sesjon (tmux-resurrect) :contentReference[oaicite:7]{index=7}  
+- <kbd>prefix</kbd> + <kbd>o</kbd>: Åpne SessionX (session-manager)
+  - I SessionX: <kbd>Ctrl+p</kbd>/<kbd>Ctrl+n</kbd> naviger opp/ned i listen
+- <kbd>prefix</kbd> + <kbd>Ctrl+s</kbd>: Lagre session (tmux-resurrect)
+- <kbd>prefix</kbd> + <kbd>Ctrl+r</kbd>: Gjenopprett sesjon (tmux-resurrect)
 - Automatisk lagring hver 15. minutt & automatisk restore ved oppstart (tmux-continuum)  
 
+For flere nyttige keybinds, sjekk github til plugins
 
 
 
