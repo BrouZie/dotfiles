@@ -106,7 +106,7 @@ Etter pluginsoppdatering!:
 - I copy-mode: <kbd>v</kbd> (start markering), <kbd>y</kbd> (kopier markering)  
 
 ### Plugin-spesifikke binds
-- <kbd>prefix</kbd> + <kbd>o</kbd>: Åpne SessionX (session-manager)
+- <kbd>prefix</kbd> + <kbd>p</kbd>: Åpne SessionX (session-manager) VIKTIG KOMMANDO!
   - I SessionX: <kbd>Ctrl+p</kbd>/<kbd>Ctrl+n</kbd> naviger opp/ned i listen
 - <kbd>prefix</kbd> + <kbd>Ctrl+s</kbd>: Lagre session (tmux-resurrect)
 - <kbd>prefix</kbd> + <kbd>Ctrl+r</kbd>: Gjenopprett sesjon (tmux-resurrect)
