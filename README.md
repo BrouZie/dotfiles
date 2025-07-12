@@ -93,7 +93,7 @@ Etter pluginsoppdatering!:
 - <kbd>Alt+l</kbd>: Neste vindu  
 
 ### Lukk & bytt størrelse
-- <kbd>Ctrl+c</kbd>: Kill window  
+- <kbd>Ctrl+w</kbd>: Kill window  
 - <kbd>Ctrl+q</kbd>: Kill pane  
 - <kbd>prefix</kbd> + <kbd>h</kbd>/<kbd>j</kbd>/<kbd>k</kbd>/<kbd>l</kbd>: forandre pane størrelser
 
