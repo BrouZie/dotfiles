@@ -5,10 +5,17 @@ return {
 	config = function()
 		require("oil").setup({
             default_file_explorer = true, -- start up nvim with oil instead of netrw
+			use_default_keymaps = false,
 			columns = { },
 			keymaps = {
-				["<M-h>"] = "actions.select_split",
+				["g?"] = { "actions.show_help", mode = "n" },
+				["<CR>"] = "actions.select",
                 ["<Esc>"] = "actions.close",
+				["<leader>cd"] = "actions.cd",
+				["<C-p>"] = "actions.preview",
+				["-"] = { "actions.parent", mode = "n" },
+				["_"] = { "actions.open_cwd", mode = "n" },
+				["<C-s>"] = "actions.refresh",
 			},
             delete_to_trash = true,
 			view_options = {
