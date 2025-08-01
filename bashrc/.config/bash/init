@@ -1,0 +1,17 @@
+# Add zoxide and mise maybe?
+# XDG_DATA_HOME=$HOME/.local/share/applications
+# Zoxide setup
+if command -v zoxide &> /dev/null; then
+	eval "$(zoxide init bash)"
+fi
+
+eval "$(oh-my-posh init bash --config $HOME/.config/ohmyposh/config.omp.toml)"
+
+# # Bash-completion enabled
+# if [ -f /etc/profile.d/bash_completion.sh ]; then
+#   source /etc/profile.d/bash_completion.sh
+# fi
+
+# Fzf key-binds enabled
+[ -f /usr/share/fzf/key-bindings.bash ] && source /usr/share/fzf/key-bindings.bash
+[ -f /usr/share/fzf/completion.bash ] && source /usr/share/fzf/completion.bash

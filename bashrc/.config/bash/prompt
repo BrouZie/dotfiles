@@ -1,0 +1,9 @@
+force_color_prompt=yes
+color_prompt=yes
+# PS1="\W \[\e]0;\w\a\]$PS1"
+# Might change for modularity later
+# PS1=$'\w \uf0a9 '
+# PS1="\[\e]0;\w\a\]$PS1"
+# PS1='\[\e[38;5;75m\]=>\[\e[0m\] \[\e[38;5;208m\]\w\[\e[0m\] \$ '
+
+eval "$(oh-my-posh init bash --config $HOME/.config/ohmyposh/config.omp.toml)"
