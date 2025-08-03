@@ -33,9 +33,10 @@ copy_items=(
 	".config/rofi"
 )
 
+cd "$DOTFILES"
 for pkg in "${stow_pck[@]}"; do
 	echo "--> Backing up existing symlinks for $pkg"
-	stow --restow --no-folding --target="$HOME" --adopt "$DOTFILES/$pkg"
+	stow --restow --no-folding --target="$HOME" --adopt "$pkg"
 
 	echo "--> Stowing $pkg"
 	stow --target="$HOME" "$pkg"
