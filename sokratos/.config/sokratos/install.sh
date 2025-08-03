@@ -23,7 +23,6 @@ source $SOKRATOS_INSTALL/terminal/clitools.sh
 source $SOKRATOS_INSTALL/terminal/development.sh
 source $SOKRATOS_INSTALL/terminal/docker.sh
 source $SOKRATOS_INSTALL/terminal/firewall.sh
-source $SOKRATOS_INSTALL/terminal/nvim.sh
 
 # Important desktop shit
 source $SOKRATOS_INSTALL/desktop/fonts.sh
