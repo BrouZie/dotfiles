@@ -27,10 +27,10 @@ stow_pck=(
 )
 
 copy_items=(
-	".config/hypr"
-	".config/waybar"
-	".config/swaync"
-	".config/rofi"
+	"hypr/.config/hypr"
+	"waybar/.config/waybar"
+	"swaync/.config/swaync"
+	"rofi/.config/rofi"
 )
 
 cd "$DOTFILES"
