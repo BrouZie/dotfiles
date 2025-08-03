@@ -4,12 +4,16 @@ set -euo pipefail
 echo "Initializing config setup"
 yay -S --needed stow
 
-cd "$HOME"
 DOTFILES="$HOME/dotfiles"
 
+cd "$HOME"
 # Tmux dependency
+if [ ! -d ".tmux/plugins/tpm" ]; then
+  git clone https://github.com/tmux-plugins/tpm.git .tmux/plugins/tpm
+else
+  echo "⟳ tpm already cloned"
+fi
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-
 stow_pck(
 	bashrc
 	kitty
@@ -53,4 +57,4 @@ for rel in "${copy_items[@]}"; do
   cp -a "$src" "$dst"
 done
 
-echo "✅ Deploy complete."
+echo "✅ Setup complete."
