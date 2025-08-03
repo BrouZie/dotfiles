@@ -26,12 +26,20 @@ stow_pck=(
 	sokratos
 )
 
-copy_items=(
+copy_src=(
 	"hypr/.config/hypr"
 	"waybar/.config/waybar"
 	"swaync/.config/swaync"
 	"rofi/.config/rofi"
 )
+
+copy_dst=(
+	".config/hypr"
+	".config/waybar"
+	".config/swaync"
+	".config/rofi"
+)
+
 
 cd "$DOTFILES"
 for pkg in "${stow_pck[@]}"; do
@@ -41,20 +49,20 @@ for pkg in "${stow_pck[@]}"; do
 	echo "--> Stowing $pkg"
 	stow --target="$HOME" "$pkg"
 done
+#
+# Backup & copy raw directories/files in parallel
+for idx in "${!copy_src[@]}"; do
+	SRC="$DOTFILES/${copy_src[$idx]}"
+	DST="$HOME/${copy_dst[$idx]}"
 
-# Backup & copy raw directories/files
-for rel in "${copy_items[@]}"; do
-  src="$DOTFILES/$rel"
-  dst="$HOME/$rel"
-  
-  if [ -e "$dst" ]; then
-    echo "--> Backing up $dst to ${dst}.bak"
-    mv "$dst" "${dst}.bak"
-  fi
-  
-  echo "--> Copying $src → $dst"
-  # ensure parent dir exists
-  cp -r "$src" "$dst"
+	if [ -e "$DST" ]; then
+		echo "--> Backing up $DST to ${DST}.bak"
+		mv "$DST" "${DST}.bak"
+	fi
+	echo "--> Copying $SRC → $DST"
+	# ensure the parent directory of $DST exists
+	mkdir -p "$(dirname "$DST")"
+	cp -r "$SRC" "$DST"
 done
 
 echo "✅ Setup complete."
