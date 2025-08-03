@@ -14,7 +14,7 @@ else
   echo "⟳ tpm already cloned"
 fi
 
-stow_pck(
+stow_pck=(
 	bashrc
 	kitty
 	nvim
@@ -33,7 +33,7 @@ copy_items(
 	".config/rofi"
 )
 
-for pkg in stow_pck; do
+for pkg in "${stow_pck[@]}"; do
 	echo "--> Backing up existing symlinks for $pkg"
 	stow --restow --no-folding --target="$HOME" --adopt "$DOTFILES/$pkg"
 
