@@ -13,7 +13,7 @@ if [ ! -d ".tmux/plugins/tpm" ]; then
 else
   echo "⟳ tpm already cloned"
 fi
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
 stow_pck(
 	bashrc
 	kitty
