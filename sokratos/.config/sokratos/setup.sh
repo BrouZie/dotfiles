@@ -26,7 +26,7 @@ stow_pck=(
 	sokratos
 )
 
-copy_items(
+copy_items=(
 	".config/hypr"
 	".config/waybar"
 	".config/swaync"
