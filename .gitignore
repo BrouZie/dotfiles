@@ -1,0 +1,9 @@
+# Ignore all of the theme switching files
+# Wallust
+kitty/.config/kitty/colors-wallust.conf
+
+# Matugen
+waybar/.config/waybar/colors.css
+swaync/.config/swaync/matugen/colors.css
+hypr/.config/hypr/colors.conf
+rofi/.config/rofi/colors.rasi
