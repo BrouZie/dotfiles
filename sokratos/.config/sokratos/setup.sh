@@ -54,8 +54,7 @@ for rel in "${copy_items[@]}"; do
   
   echo "--> Copying $src → $dst"
   # ensure parent dir exists
-  mkdir -p "$(dirname "$dst")"
-  cp -a "$src" "$dst"
+  cp -r "$src" "$dst"
 done
 
 echo "✅ Setup complete."
