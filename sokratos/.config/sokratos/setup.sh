@@ -24,14 +24,14 @@ stow_pck(
 	wallust
 	matugen
 	sokratos
-	)
+)
 
 copy_items(
 	".config/hypr"
 	".config/waybar"
 	".config/swaync"
 	".config/rofi"
-	)
+)
 
 for pkg in stow_pck; do
 	echo "--> Backing up existing symlinks for $pkg"
