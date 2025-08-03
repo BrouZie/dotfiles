@@ -1,8 +1,8 @@
 # Ignore all of the theme switching files
-# Wallust
+# Wallust output
 kitty/.config/kitty/colors-wallust.conf
 
-# Matugen
+# Matugen output
 waybar/.config/waybar/colors.css
 swaync/.config/swaync/matugen/colors.css
 hypr/.config/hypr/colors.conf
