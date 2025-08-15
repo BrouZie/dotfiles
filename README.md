@@ -5,10 +5,13 @@
 ```bash
 dotfiles/kasper.sh
 ```
-## DERETTER SKAL BÅDE NVIM OG TMUX VÆRE SATT OPP
-- For å laste ned plugins i tmux -> - <kbd>prefix</kbd> + <kbd>r</kbd>: Reload tmux-config  
-- <kbd>prefix</kbd> + <kbd>I</kbd>: Installer/oppdater plugins (TPM)
+# For å sørge for at tmux funker riktig:
+- <kbd>Ctrl+space</kbd> + <kbd>r</kbd>: Reload tmux-config
+- <kbd>Ctrl+space</kbd> + <kbd>I</kbd>: Installer/oppdater plugins (TPM)
 
+## MED DET SKAL BÅDE NVIM OG TMUX VÆRE SATT OPP
+
+---
 
 ### Nedlasting av repository:
 
