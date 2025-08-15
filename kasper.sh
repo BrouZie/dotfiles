@@ -32,7 +32,13 @@ fi
 # Install nvim dependencies
 source $INSTALL_DIR/terminal/nvim_tmux.sh
 
-# Move configs into place (this won't back up any existing config)
+# Backing up any existing nvim config
+if [ -e ~/.config/nvim ]; then
+	echo "--> Backing up existing nvim config to ~/.config/nvim.bak"
+	mv ~/.config/nvim ~/.config/nvim.bak
+fi
+
+# Move configs into place
 mkdir -p ~/.config/nvim
 cp -r $DOTFILES/nvim/.config/nvim ~/.config/nvim/
 cp $DOTFILES/tmux/.tmux.conf $HOME/.tmux.conf
