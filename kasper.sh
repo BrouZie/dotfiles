@@ -14,7 +14,7 @@ catch_errors() {
 
 # Install yay package manager
 source $INSTALL_DIR/prerequisites/aur.sh
-source $INSTALL_DIR/prerequisites/presentation
+source $INSTALL_DIR/prerequisites/presentation.sh
 
 
 cd "$HOME"
