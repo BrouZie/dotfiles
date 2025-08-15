@@ -12,6 +12,9 @@ catch_errors() {
   echo "You can retry by running: bash ~/dotfiles/kasper.sh"
 }
 
+# Ensure system is up to date!
+sudo pacman -Syu
+
 # Install yay package manager
 source $INSTALL_DIR/prerequisites/aur.sh
 source $INSTALL_DIR/prerequisites/presentation.sh
@@ -40,6 +43,6 @@ echo "Would you like to get some extra cli tools (quite handy ones)?"
 gum confirm
 echo "Nice! Installation will proceed"
 sleep 1
-source $INSTALL_DIR/terminal/clitools.sh
+source $INSTALL_DIR/terminal/kasper_extra.sh
 
 echo "✅ Setup complete."
