@@ -3,7 +3,7 @@
 
 ## DU TRENGER KUN KJØRE DENNE KOMMANDOEN FRA @HOME:
 ```bash
-dotfiles/kasper.sh
+~/dotfiles/kasper.sh
 ```
 # For å sørge for at tmux funker riktig:
 - <kbd>Ctrl+space</kbd> + <kbd>r</kbd>: Reload tmux-config
