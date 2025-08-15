@@ -40,7 +40,7 @@ fi
 
 # Move configs into place
 mkdir -p ~/.config/nvim
-cp -r $DOTFILES/nvim/.config/nvim ~/.config/nvim
+cp -r $DOTFILES/nvim/.config/nvim/ ~/.config/nvim
 cp $DOTFILES/tmux/.tmux.conf $HOME/.tmux.conf
 echo "Tmux and neovim is set up properly!"
 sleep 2
