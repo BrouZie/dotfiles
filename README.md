@@ -1,5 +1,14 @@
-# Til KasperBby
+# OPPDATERT TIL KASPERBBY!!
 (Call me for spørsmål)
+
+## DU TRENGER KUN KJØRE DENNE KOMMANDOEN FRA @HOME:
+```bash
+dotfiles/kasper.sh
+```
+## DERETTER SKAL BÅDE NVIM OG TMUX VÆRE SATT OPP
+- For å laste ned plugins i tmux -> - <kbd>prefix</kbd> + <kbd>r</kbd>: Reload tmux-config  
+- <kbd>prefix</kbd> + <kbd>I</kbd>: Installer/oppdater plugins (TPM)
+
 
 ### Nedlasting av repository:
 
