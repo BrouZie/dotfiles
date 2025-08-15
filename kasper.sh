@@ -13,7 +13,8 @@ catch_errors() {
 }
 
 # Install yay package manager
-source $INSTALL_DIR/prerequirites/aur.sh
+source $INSTALL_DIR/prerequisites/aur.sh
+source $INSTALL_DIR/prerequisites/presentation
 
 
 cd "$HOME"
@@ -32,3 +33,13 @@ source $INSTALL_DIR/terminal/nvim_tmux.sh
 mkdir -p ~/.config/nvim
 cp -r $DOTFILES/nvim/.config/nvim ~/.config/nvim/
 cp $DOTFILES/tmux/.tmux.conf $HOME/.tmux.conf
+echo "Tmux and neovim is set up properly!"
+sleep 2
+
+echo "Would you like to get some extra cli tools (quite handy ones)?"
+gum confirm
+echo "Nice! Installation will proceed"
+sleep 1
+source $INSTALL_DIR/terminal/clitools.sh
+
+echo "✅ Setup complete."
