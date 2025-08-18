@@ -19,7 +19,7 @@ Du kan starte med å clone dotfiles!
 ```bash
 git clone https://github.com/BrouZie/dotfiles.git
 ```
-- Denne kan plasseres der du selv ønsker
+- Denne må plasseres i $HOME
 
 ### Viktige nedlastinger:
 

@@ -8,3 +8,6 @@ waybar/.config/waybar/colors.css
 swaync/.config/swaync/matugen/colors.css
 hypr/.config/hypr/colors.conf
 rofi/.config/rofi/colors.rasi
+
+# Neovim current colorscheme
+nvim/.config/nvim/lua/current-theme.lua
