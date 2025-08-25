@@ -1,6 +1,16 @@
 return {
 	-- Mini Nvim
 	{ "echasnovski/mini.nvim", version = false },
+	{
+		"echasnovski/mini.pick",
+		version = false,
+		config = function()
+			require("mini.pick").setup({
+				vim.keymap.set('n', '<leader>f', ':Pick files<CR>')
+			})
+		end,
+	},
+
 	-- Comments
 	{
 		"echasnovski/mini.comment",
@@ -39,7 +49,7 @@ return {
 					go_out_plus = "H",
 				},
 			})
-			vim.keymap.set("n", "\\", "<cmd>lua MiniFiles.open()<CR>", { desc = "Toggle mini file explorer" }) -- toggle file explorer
+			vim.keymap.set("n", "<leader>dick", "<cmd>lua MiniFiles.open()<CR>", { desc = "Toggle mini file explorer" }) -- toggle file explorer
 			vim.keymap.set("n", "<leader>pe", function()
 				MiniFiles.open(vim.api.nvim_buf_get_name(0), false)
 				MiniFiles.reveal_cwd()

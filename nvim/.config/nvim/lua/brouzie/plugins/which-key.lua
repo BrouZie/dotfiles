@@ -1,7 +1,7 @@
 return {
 	--I got annoyed so I just stopped using it for a bit
 	"folke/which-key.nvim",
-	enabled = true,
+	enabled = false,
 	event = "VeryLazy",
 	init = function()
 		vim.o.timeout = true

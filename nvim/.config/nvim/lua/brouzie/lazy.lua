@@ -19,6 +19,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	{ import = "brouzie.plugins" }, -- Imports from lua/brouzie/replace
 	{ import = "brouzie.plugins.lsp" },
+	{ "echasnovski/mini.pick" },
 	{ -- Adds git related signs to the gutter, as well as utilities for managing changes
 		"lewis6991/gitsigns.nvim",
 		opts = {
