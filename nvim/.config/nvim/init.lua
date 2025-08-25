@@ -6,7 +6,6 @@ require("brouzie.core.keymaps")
 require("brouzie.lazy")
 require("current-theme")
 require("brouzie.terminalpop")
-print("Welcome bitch")
 
 -- Highlighting when yayænkin
 vim.api.nvim_create_autocmd("TextYankPost", {

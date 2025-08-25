@@ -39,8 +39,8 @@ return {
 		})
 
 		-- Keymaps
-		vim.keymap.set("n", "<leader>g", builtin.live_grep, { desc = "Telescope live grep" })
-		-- vim.keymap.set("n", "<leader>f", builtin.find_files, { desc = "Telescope find files" })
+		vim.keymap.set("n", "<leader>G", builtin.live_grep, { desc = "Telescope live grep" })
+		vim.keymap.set("n", "<leader>F", builtin.git_files, { desc = "Telescope live grep" })
 		vim.keymap.set("n", "<leader>km", builtin.keymaps, { desc = "Telescope keymaps" })
 		vim.keymap.set("n", "<leader>pc", builtin.current_buffer_fuzzy_find, { desc = "Fuzzy inside buffer" })
 		vim.keymap.set("n", "<leader>r", "<cmd>Telescope oldfiles<CR>", { desc = "Fuzzy find recent files" })
