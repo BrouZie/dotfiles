@@ -1,6 +1,14 @@
-source ~/.config/bash/shell
-source ~/.config/bash/aliases
-source ~/.config/bash/prompt
-source ~/.config/bash/init
-source ~/.config/bash/envs
-[[ $- == *i* ]] && bind -f ~/.config/bash/inputrc
+# Path to bash-configs
+BASHCFG="$HOME/.config/bash"
+
+[[ -f "$BASHCFG/envs" ]] && source "$BASHCFG/envs"
+
+# Runs only in interactive shell
+[[ $- == *i* ]]
+[[ -f "$BASHCFG/shell" ]] && source "$BASHCFG/shell"
+[[ -f "$BASHCFG/init" ]] && source "$BASHCFG/init"
+[[ -f "$BASHCFG/aliases" ]] && source "$BASHCFG/aliases"
+[[ -f "$BASHCFG/prompt" ]] && source "$BASHCFG/prompt"
+
+# Readline config
+bind -f "$BASHCFG/inputrc"

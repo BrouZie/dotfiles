@@ -1,9 +1,10 @@
 // -*- mode: jsonc -*-
 {
     // "layer": "top", // Waybar at top layer
-    "position": "top", // Waybar position (top|bottom|left|right)
-    "height": 32, // Waybar height (to be removed for auto height)
-    "width": 1280, // Waybar width
+		"output": ["DP-3"],
+    "position": "bottom", // Waybar position (top|bottom|left|right)
+    "height": 30, // Waybar height (to be removed for auto height)
+    "width": 2000, // Waybar width
 	"margin-top": 3,
 	"margin-bottom": 5,
     "spacing": 7, // Gaps between modules (4px)
@@ -44,6 +45,12 @@
         "format": "{temperatureC}°C {icon}",
         "format-icons": ["", "", ""]
     },
+	"hyprland/language": {
+		"format": "{}",
+		"format-eu": "HackerMode",
+		"format-no": "Norwegian",
+		"tooltip": false
+	},
     "backlight": {
         // "device": "acpi_video1",
         "format": "{percent}% {icon}",
@@ -62,9 +69,10 @@
     },
 	"hyprland/workspaces": {
 		"format": "{name}",
+		"all-outputs": false,
+		"persistent-only": true,
        "persistent-workspaces": {
-             "*": 5, // 5 workspaces by default on every monitor
-             "HDMI-A-1": 3 // but only three on HDMI-A-1
+             "*": [1,2,3,4,5] // 5 workspaces by default on every monitor
        }
 	},
   "network": {
@@ -78,7 +86,7 @@
     "tooltip-format-disconnected": "Disconnected",
     "interval": 3,
     "nospacing": 1,
-    "on-click": "kitty --class=kitty -e nmtui"
+    "on-click": "kitty -e nmtui"
   },
   "pulseaudio": {
     "format": "{icon}  {volume}%",
@@ -114,13 +122,14 @@
     "custom/power": {
         "format" : "⏻ ",
 		"tooltip": false,
-		"menu": "on-click",
-		"menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
-		"menu-actions": {
-			"shutdown": "shutdown",
-			"reboot": "reboot",
-			"suspend": "systemctl suspend",
-			"hibernate": "systemctl hibernate"
-		}
+		"on-click": "kitty --class=kitty -e poweroff"
+		// "menu": "on-click"
+		// "menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
+		// "menu-actions": {
+		// 	"shutdown": "shutdown",
+		// 	"reboot": "reboot",
+		// 	"suspend": "systemctl suspend",
+		// 	"hibernate": "systemctl hibernate"
+		// }
     }
 }
