@@ -17,6 +17,7 @@ return {
 					"go",
 					"vimdoc",
 					"c",
+					"sql",
 				},
 				auto_install = false,
 				highlight = {

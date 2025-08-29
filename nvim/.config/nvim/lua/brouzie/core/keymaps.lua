@@ -44,6 +44,9 @@ map("n", "<leader>pp", function()
 	print("File path copied to clipboard: " .. filePath)
 end, { desc = "Copy file path to clipboard" })
 
+-- Toggle colorizer for buffer
+map("n", "<leader>c", ":ColorizerToggle<CR>")
+
 map(
 	"n",
 	"<leader>rp",
