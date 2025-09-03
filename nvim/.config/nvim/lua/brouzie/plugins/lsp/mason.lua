@@ -38,7 +38,8 @@ return {
 				"lua_ls",
 				-- "ts_ls", currently using a ts plugin
 				"bashls",
-				"pylsp",
+				"basedpyright",
+				"ruff",
 				"html",
 				"cssls",
 				"tailwindcss",
@@ -54,9 +55,9 @@ return {
 			ensure_installed = {
 				"prettier", -- prettier formatter
 				"stylua", -- lua formatter
-				"isort", -- python formatter
-				"black",
-				"pylint",
+				"ruff",
+				-- "isort", -- python formatter
+				-- "black",
 				"debugpy",
 				"clangd",
 				"denols",

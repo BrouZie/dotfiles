@@ -25,6 +25,8 @@ return {
 				},
 			},
 			formatters_by_ft = {
+				lua = { "stylua" },
+				python = { "ruff_format" },
 				javascript = { "prettier" },
 				typescript = { "prettier" },
 				javascriptreact = { "prettier" },
@@ -37,8 +39,6 @@ return {
 				-- markdown = { "prettier" },
 				graphql = { "prettier" },
 				liquid = { "prettier" },
-				lua = { "stylua" },
-				python = { "black" },
 				markdown = { "prettier" },
 				["markdown.mdx"] = { "prettier", "markdownlint-cli2", "markdown-toc" },
 			},

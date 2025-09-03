@@ -12,10 +12,10 @@ return {
 				disable_background = false,
 				-- 	disable_nc_background = false,
 				-- 	disable_float_background = false,
-				extend_background_behind_borders = false,
+				extend_background_behind_borders = true,
 				styles = {
 					bold = true,
-					italic = false,
+					italic = true,
 					transparency = true,
 				},
 				highlight_groups = {

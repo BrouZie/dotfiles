@@ -99,7 +99,7 @@ Etter pluginsoppdatering!:
 - <kbd>prefix</kbd> + <kbd>v</kbd>: Horisontal split (side-ved-side)  
 - <kbd>prefix</kbd> + <kbd>s</kbd>: Vertikal split (oppe/nede)  
 
-### Navigering
+### Navigering mellom vinduer (panes)
 - <kbd>Ctrl</kbd> + <kbd>h</kbd>/<kbd>j</kbd>/<kbd>k</kbd>/<kbd>l</kbd>: Flytt fokus pane venstre/ned/opp/høyre  
 - <kbd>Alt+h</kbd>: Forrige vindu  
 - <kbd>Alt+l</kbd>: Neste vindu  
@@ -109,7 +109,7 @@ Etter pluginsoppdatering!:
 - <kbd>Ctrl+q</kbd>: Kill pane  
 - <kbd>prefix</kbd> + <kbd>h</kbd>/<kbd>j</kbd>/<kbd>k</kbd>/<kbd>l</kbd>: forandre pane størrelser
 
-### Nye vinduer & omdøping
+### Nye vinduer/terminal & navngi vindu
 - <kbd>prefix</kbd> + <kbd>Enter</kbd>: Nytt vindu  
 - <kbd>prefix</kbd> + <kbd>%</kbd>: Rename vindu via prompt  
 
@@ -121,7 +121,6 @@ Etter pluginsoppdatering!:
 - <kbd>prefix</kbd> + <kbd>p</kbd>: Åpne SessionX (session-manager) VIKTIG KOMMANDO!
   - I SessionX: <kbd>Ctrl+p</kbd>/<kbd>Ctrl+n</kbd> naviger opp/ned i listen
 - <kbd>prefix</kbd> + <kbd>Ctrl+s</kbd>: Lagre session (tmux-resurrect)
-- <kbd>prefix</kbd> + <kbd>Ctrl+r</kbd>: Gjenopprett sesjon (tmux-resurrect)
 - Automatisk lagring hver 15. minutt & automatisk restore ved oppstart (tmux-continuum)  
 
 For flere nyttige keybinds, sjekk github til plugins
