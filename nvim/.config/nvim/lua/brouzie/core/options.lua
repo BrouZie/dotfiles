@@ -16,3 +16,6 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.termguicolors = true
 vim.opt.clipboard:append("unnamedplus")
+
+-- Copilot
+vim.g.copilot_no_tab_map = true

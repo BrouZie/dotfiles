@@ -17,7 +17,7 @@ map("n", "<leader>o", ":update<CR> :source<CR>")
 map("n", "<leader>w", ":write<CR>")
 map("n", "<leader>q", ":quit<CR>")
 map("n", "<leader>n", ":e $MYVIMRC<CR>")
-map("n", "<leader>z", ":e ~/.config/bash/rc<CR>")
+-- map("n", "<leader>z", ":e ~/.config/bash/rc<CR>")
 map("n", "<leader>b", ":e #<CR>")
 map("n", "<leader>S", ":sf #<CR>")
 map("t", "", "")
@@ -63,8 +63,14 @@ map(
 	"n",
 	"<leader>rp",
 	[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-	{ desc = "Replace word cursor is on globally" }
+	{ desc = "Replace word under cursor inside buffer" }
 )
+
+-- Copilot
+map('i', '<C-F>', 'copilot#Accept("\\<CR>")', {
+	expr = true,
+	replace_keycodes = false
+})
 
 -- Toggle LSP diagnostics visibility
 local isLspDiagnosticsVisible = true

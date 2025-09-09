@@ -10,7 +10,7 @@ return {
 	  keymaps = {
 		["g?"] = { "actions.show_help", mode = "n" },
 		["<CR>"] = "actions.select",
-		["<Esc>"] = "actions.close",
+		["q"] = "actions.close",
 		["<leader>cd"] = "actions.cd",
 		["<C-p>"] = "actions.preview",
 		["-"] = { "actions.parent", mode = "n" },
