@@ -25,12 +25,13 @@ vim.g.db_ui_use_nerd_fonts = 1
 -- We'll load the .env before launching nvim so these get filled.
 vim.g.dbs = {
   northwind = "mariadb://$MYSQL_USER:$MYSQL_PASSWORD@127.0.0.1:3306/$MYSQL_DATABASE",
+	objective_db = "sqlite:" .. vim.fn.getcwd() .. "/sql/app.db",
 }
 
 -- nvim-cmp + dadbod-completion: enable completion for SQL buffers
 -- (Assumes you already use nvim-cmp)
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "sql", "mysql", "plsql" },
+  pattern = { "sql", "mysql", "plsql", "sqlite" },
   callback = function()
     local ok, cmp = pcall(require, "cmp")
     if ok then

@@ -25,7 +25,7 @@ map("t", "", "")
 
 -- Panes manipulation
 map("n", "<leader>v", ":vsplit<CR>")
-map("n", "<leader>s", ":dsplit<CR>")
+map("n", "<leader>s", "<C-w>s<CR>")
 map("n", "<leader>+", ":vertical resize +5<CR>")
 map("n", "<leader>-", ":vertical resize -5<CR>")
 map("n", "<leader>?", ":resize +5<CR>")
