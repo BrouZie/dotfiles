@@ -2,6 +2,7 @@
 # Wallust output
 kitty/.config/kitty/colors-wallust.conf
 kitty/.config/kitty/colors.conf
+kitty/.config/kitty/mat-colors.conf
 
 # Matugen output
 waybar/.config/waybar/colors.css
