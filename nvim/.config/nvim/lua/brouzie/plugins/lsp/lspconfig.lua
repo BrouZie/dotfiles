@@ -32,6 +32,19 @@ return {
 				opts.desc = "Show LSP type definitions"
 				vim.keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts) -- show lsp type definitions
 
+				opts.desc = "Show LSP project symbols"
+				vim.keymap.set("n", "<leader>ps", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", opts) -- show lsp type definitions
+
+				opts.desc = "Project: functions & methods"
+				vim.keymap.set("n", "<leader>pf", function()
+					require("telescope.builtin").lsp_dynamic_workspace_symbols({ symbols = { "function", "method" } })
+				end, opts)
+
+				opts.desc = "Project: classes & interfaces"
+				vim.keymap.set("n", "<leader>pc", function()
+					require("telescope.builtin").lsp_dynamic_workspace_symbols({ symbols = { "class", "interface", "struct" }})
+				end, opts)
+
 				opts.desc = "See available code actions"
 				vim.keymap.set({ "n", "v" }, "<leader>ca", function()
 					vim.lsp.buf.code_action()
