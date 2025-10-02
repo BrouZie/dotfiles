@@ -99,7 +99,7 @@ return {
 
 		-- Config lsp servers here
 		-- lua_ls
-		lspconfig.lua_ls.setup({
+		vim.lsp.config('lua_ls', {
 			capabilities = capabilities,
 			settings = {
 				Lua = {
@@ -118,7 +118,7 @@ return {
 				},
 			},
 		})
-		lspconfig.basedpyright.setup({
+		vim.lsp.config('basedpyright', {
 			capabilities = capabilities,
 			settings = {
 				basedpyright = {
@@ -129,11 +129,12 @@ return {
 				},
 			},
 		})
-		lspconfig.ruff.setup({
+
+		vim.lsp.config('ruff', {
 			capabilities = capabilities,
 		})
 		-- emmet_ls
-		lspconfig.emmet_ls.setup({
+		vim.lsp.config('emmet_ls', {
 			capabilities = capabilities,
 			filetypes = {
 				"html",
@@ -148,7 +149,7 @@ return {
 		})
 
 		-- emmet_language_server
-		lspconfig.emmet_language_server.setup({
+		vim.lsp.config('emmet_language_server', {
 			capabilities = capabilities,
 			filetypes = {
 				"css",
@@ -176,13 +177,13 @@ return {
 		})
 
 		-- denols
-		lspconfig.denols.setup({
+		vim.lsp.config('denols', {
 			capabilities = capabilities,
 			root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
 		})
 
 		-- ts_ls (replaces tsserver)
-		lspconfig.ts_ls.setup({
+		vim.lsp.config('ts_ls', {
 			capabilities = capabilities,
 			root_dir = function(fname)
 				local util = lspconfig.util
@@ -197,5 +198,12 @@ return {
 				},
 			},
 		})
+		vim.lsp.enable('lua_ls')
+		vim.lsp.enable('basedpyright')
+		vim.lsp.enable('ruff')
+		vim.lsp.enable('emmet_ls')
+		vim.lsp.enable('emmet_language_server')
+		vim.lsp.enable('denols')
+		vim.lsp.enable('ts_ls')
 	end,
 }
