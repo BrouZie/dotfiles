@@ -7,6 +7,7 @@ require("brouzie.core.keymaps")
 require("brouzie.lazy")
 require("current-theme")
 require("brouzie.terminalpop")
+require("brouzie.todopop")
 
 -- Highlighting when yayænkin
 vim.api.nvim_create_autocmd("TextYankPost", {

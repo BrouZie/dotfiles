@@ -1,10 +1,11 @@
 return {
 	"hrsh7th/nvim-cmp",
-	-- event = "InsertEnter",
+	event = "InsertEnter",
 	branch = "main", -- fix for deprecated functions coming in nvim 0.13
 	dependencies = {
 		"hrsh7th/cmp-buffer", -- source for text in buffer
 		"hrsh7th/cmp-path", -- source for file system paths
+		"f3fora/cmp-spell",
 		{
 			"L3MON4D3/LuaSnip",
 			-- follow latest release.
@@ -99,7 +100,6 @@ return {
 			end
 		end
 
-		-- SEXY I THINK
 		-- custom smart backspace
 		local smart_bs = function(dedent)
 			local keys = nil
@@ -232,6 +232,15 @@ return {
 				{ name = "buffer" }, -- text within current buffer
 				{ name = "path" }, -- file system paths
 				{ name = "tailwindcss-colorizer-cmp" },
+				{
+					name = "spell", -- for markdown spellchecks completions
+					option = {
+						enable_in_context = function()
+							local ft = vim.bo.filetype
+							return ft == "markdown" or ft == "text"
+						end,
+					},
+				},
 			}),
 			-- mapping = cmp.mapping.preset.insert({
 			--     ["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
@@ -249,7 +258,7 @@ return {
 				--     smart_bs()
 				-- end, { 'i', 's' }),
 
-				["<C-g>"] = cmp.mapping.abort(), -- close completion window
+				["<C-e>"] = cmp.mapping.abort(), -- close completion window
 				["<C-d>"] = cmp.mapping(function()
 					cmp.close_docs()
 				end, { "i", "s" }),
@@ -263,7 +272,7 @@ return {
 				["<Down>"] = cmp.mapping(select_next_item),
 				["<Up>"] = cmp.mapping(select_prev_item),
 
-				["<C-i>"] = cmp.mapping(function(fallback)
+				["<C-y>"] = cmp.mapping(function(fallback)
 					if cmp.visible() then
 						local entry = cmp.get_selected_entry()
 						confirm(entry)
@@ -349,33 +358,34 @@ return {
 			},
 		})
 
-		-- Uncomment if you want ghost_text
+		-- NOTE: Added Ghost text stuff
+		-- Only show ghost text at word boundaries, not inside keywords. Based on idea
+		-- from: https://github.com/hrsh7th/nvim-cmp/issues/2035#issuecomment-2347186210
 
-		-- local config = require("cmp.config")
+		-- local config = require('cmp.config')
 		-- local toggle_ghost_text = function()
-		-- 	if vim.api.nvim_get_mode().mode ~= "i" then
-		-- 		return
-		-- 	end
+		--     if vim.api.nvim_get_mode().mode ~= 'i' then
+		--         return
+		--     end
 		--
-		-- 	local cursor_column = vim.fn.col(".")
-		-- 	local current_line_contents = vim.fn.getline(".")
-		-- 	local character_after_cursor = current_line_contents:sub(cursor_column, cursor_column)
+		--     local cursor_column = vim.fn.col('.')
+		--     local current_line_contents = vim.fn.getline('.')
+		--     local character_after_cursor = current_line_contents:sub(cursor_column, cursor_column)
 		--
-		-- 	local should_enable_ghost_text = character_after_cursor == ""
-		-- 		or vim.fn.match(character_after_cursor, [[\k]]) == -1
+		--     local should_enable_ghost_text = character_after_cursor == '' or vim.fn.match(character_after_cursor, [[\k]]) == -1
 		--
-		-- 	local current = config.get().experimental.ghost_text
-		-- 	if current ~= should_enable_ghost_text then
-		-- 		config.set_global({
-		-- 			experimental = {
-		-- 				ghost_text = should_enable_ghost_text,
-		-- 			},
-		-- 		})
-		-- 	end
+		--     local current = config.get().experimental.ghost_text
+		--     if current ~= should_enable_ghost_text then
+		--         config.set_global({
+		--             experimental = {
+		--                 ghost_text = should_enable_ghost_text,
+		--             },
+		--         })
+		--     end
 		-- end
 		--
-		-- vim.api.nvim_create_autocmd({ "InsertEnter", "CursorMovedI" }, {
-		-- 	callback = toggle_ghost_text,
+		-- vim.api.nvim_create_autocmd({ 'InsertEnter', 'CursorMovedI' }, {
+		--     callback = toggle_ghost_text,
 		-- })
 		-- ! Ghost text stuff ! --
 	end,
