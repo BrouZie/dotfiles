@@ -182,6 +182,16 @@ return {
 			root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
 		})
 
+		-- bashls
+		vim.lsp.config('bashls', {
+			capabilities = capabilities
+		})
+
+		-- marksman
+		vim.lsp.config('marksman', {
+			capabilities = capabilities
+		})
+
 		-- ts_ls (replaces tsserver)
 		vim.lsp.config('ts_ls', {
 			capabilities = capabilities,
@@ -204,6 +214,8 @@ return {
 		vim.lsp.enable('emmet_ls')
 		vim.lsp.enable('emmet_language_server')
 		vim.lsp.enable('denols')
+		vim.lsp.enable('bashls')
+		vim.lsp.enable('marksman')
 		vim.lsp.enable('ts_ls')
 	end,
 }
