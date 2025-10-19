@@ -33,8 +33,6 @@ return {
 				},
 			})
 
-			-- HACK: set this on the color you want to be persistent
-			-- when quit and reopening nvim
 			-- vim.cmd("colorscheme rose-pine")
 		end,
 	},
@@ -71,6 +69,11 @@ return {
 				transparent_mode = true,
 			})
 		end,
+	},
+
+	-- NOTE: Melange
+	{
+		"savq/melange-nvim"
 	},
 	-- NOTE: Kanagwa
 	{

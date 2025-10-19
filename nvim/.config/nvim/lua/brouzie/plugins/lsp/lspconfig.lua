@@ -7,7 +7,7 @@ return {
 		{ "antosha417/nvim-lsp-file-operations", config = true },
 	},
 	config = function()
-		-- NOTE: LSP Keybinds
+		-- LSP Keybinds
 
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("UserLspConfig", {}),
@@ -89,9 +89,6 @@ return {
 			update_in_insert = false, -- Keep diagnostics active in insert mode
 		})
 
-		-- Moved back from mason_lspconfig.setup_handlers from mason.lua file
-		-- as mason setup_handlers is deprecated & its causing issues with lsp settings
-		--
 		-- Setup servers
 		local lspconfig = require("lspconfig")
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
@@ -181,6 +178,11 @@ return {
 			capabilities = capabilities,
 			root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
 		})
+		
+		-- clangd or c/c++
+		vim.lsp.config('clangd', {
+			capabilities = capabilities,
+		})
 
 		-- bashls
 		vim.lsp.config('bashls', {
@@ -214,6 +216,7 @@ return {
 		vim.lsp.enable('emmet_ls')
 		vim.lsp.enable('emmet_language_server')
 		vim.lsp.enable('denols')
+		vim.lsp.enable('clangd')
 		vim.lsp.enable('bashls')
 		vim.lsp.enable('marksman')
 		vim.lsp.enable('ts_ls')

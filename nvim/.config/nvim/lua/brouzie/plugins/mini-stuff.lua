@@ -7,7 +7,7 @@ return {
 		config = function()
 			require("mini.pick").setup({
 				vim.keymap.set('n', '<leader>f', ':Pick files<CR>'),
-				vim.keymap.set('n', '<leader>g', ':Pick grep_live<CR>')
+				vim.keymap.set('n', '<leader>G', ':Pick grep_live<CR>')
 			})
 		end,
 	},
@@ -70,7 +70,6 @@ return {
 			highlight_duration = 300,
 
 			-- Module mappings. Use `''` (empty string) to disable one.
-			-- INFO:
 			-- saiw surround with no whitespace
 			-- saw surround with whitespace
 			mappings = {
