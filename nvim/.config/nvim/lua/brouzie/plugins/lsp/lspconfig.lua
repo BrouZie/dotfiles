@@ -161,6 +161,12 @@ return {
 				variables = {},
 			},
 		})
+		
+		-- .xml support
+		vim.lsp.config('lemminx', {
+			capabilities = capabilities,
+		})
+		vim.lsp.enable('lemminx')
 
 		-- denols
 		lspconfig.denols.setup({
