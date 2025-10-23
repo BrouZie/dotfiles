@@ -3,25 +3,17 @@ vim.g.maplocalleader = "\\"
 
 local map = vim.keymap.set
 
--- Run python with uv
-map('n', '<leader>x', function()
-  vim.cmd('w') -- save
-  vim.cmd('belowright split | resize 12')
-  vim.cmd('terminal uv run python ' .. vim.fn.shellescape(vim.fn.expand('%')))
-end, { desc = 'Run current Python file with uv' })
-
 map("n", "<leader>f", ":Pick files<CR>")
 map("n", "<leader>h", ":Pick help<CR>")
 map("n", "<leader>ts", ":TodoTelescope<CR>")
 map("n", "<leader>gs", vim.cmd.Git)
 map("n", "<leader>gg", ":G ")
 map("n", "<leader>e", ":Oil<CR>")
-map("n", "<leader>o", ":update<CR> :source<CR>")
-map("n", "<leader>w", ":write<CR>")
+map("n", "<leader>w", ":update<CR>")
 map("n", "<leader>q", ":quit<CR>")
-map("n", "<leader>n", ":e $MYVIMRC<CR>")
 map("n", "<leader>b", ":e #<CR>")
 map("n", "<leader>S", ":sf #<CR>")
+map("n", "<leader>V", ":vsplit #<CR>")
 map("t", "", "")
 map("t", "", "")
 
@@ -73,16 +65,6 @@ map('i', '<C-F>', 'copilot#Accept("\\<CR>")', {
 	expr = true,
 	replace_keycodes = false
 })
-
--- Molten / jupyter plugin keymaps
-map("n", "<localleader>mi", ":MoltenInit<CR>", { silent = true, desc = "Initialize the plugin" })
-map("n", "<localleader>e", ":MoltenEvaluateOperator<CR>", { silent = true, desc = "run operator selection" })
-map("n", "<localleader>rl", ":MoltenEvaluateLine<CR>", { silent = true, desc = "evaluate line" })
-map("n", "<localleader>rr", ":MoltenReevaluateCell<CR>", { silent = true, desc = "re-evaluate cell" })
-map("v", "<localleader>r", ":<C-u>MoltenEvaluateVisual<CR>gv", { silent = true, desc = "evaluate visual selection" })
-map("n", "<localleader>rd", ":MoltenDelete<CR>", { silent = true, desc = "molten delete cell" })
-map("n", "<localleader>oh", ":MoltenHideOutput<CR>", { silent = true, desc = "hide output" })
-map("n", "<localleader>os", ":noautocmd MoltenEnterOutput<CR>", { silent = true, desc = "show/enter output" })
 
 -- Toggle LSP diagnostics visibility
 local isLspDiagnosticsVisible = true

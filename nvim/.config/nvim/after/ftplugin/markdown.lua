@@ -304,12 +304,65 @@ function SmartListToggleCurrentLine()
     vim.fn.setline(line_num, line)
 end
 
+function JumpCodecellUp()
+	local header = vim.fn.search("^```python\\s*$", "bnw")
+	local head_dist = vim.api.nvim_win_get_cursor(0)[1] - header
+	if head_dist > 4 then
+		vim.api.nvim_win_set_cursor(0, { header + 1, 0 } )
+	elseif head_dist < 4 then
+		vim.api.nvim_win_set_cursor(0, { header, 0})
+		vim.cmd("normal zz")
+		local new_head = vim.fn.search("^```python\\s*$", "bw")
+		vim.api.nvim_win_set_cursor(0, { new_head + 1, 0 } )
+		vim.cmd("normal zz")
+	else
+		print("No codeblocks in file")
+	end
+end
+
+function JumpCodecellDown()
+	local header = vim.fn.search("^```python\\s*$", "nw")
+	vim.api.nvim_win_set_cursor(0, { header + 1, 0 } )
+	vim.cmd("normal zz")
+end
+
+function RunCell()
+	-- try except maybe
+	local start_line = vim.fn.search("^```python\\s*$", "bnW")
+	local end_line = vim.fn.search("^```\\s*$", "nW")
+
+	if start_line > 0 and end_line > start_line + 1 then
+		vim.api.nvim_win_set_cursor(0, { start_line + 1, 0 })
+		vim.cmd("normal! V")
+		vim.api.nvim_win_set_cursor( 0, { end_line - 1, 0 })
+		vim.cmd("MoltenEvaluateOperator")
+		vim.cmd("normal zz")
+	end
+end
+
+
 -- user commands
 vim.api.nvim_create_user_command("ToggleNumberVisual", ToggleNumberVisualSelection, {})
 vim.api.nvim_create_user_command("ToggleBulletVisual", ToggleBulletVisualSelection, {})
 vim.api.nvim_create_user_command("ToggleCheckboxVisual", ToggleCheckboxVisualSelection, {})
 vim.api.nvim_create_user_command("ToggleTaskStateVisual", ToggleTaskStateVisualSelection, {})
 vim.api.nvim_create_user_command("SmartListToggleVisual", SmartListToggleVisualSelection, {})
+
+-- Jupyter setup with Molten ++
+vim.api.nvim_create_user_command("JumpCodecellUp", JumpCodecellUp, {})
+vim.api.nvim_create_user_command("JumpCodecellDown", JumpCodecellDown, {})
+vim.api.nvim_create_user_command("RunCell", RunCell, {})
+
+vim.keymap.set("n", "<space>k", ":JumpCodecellUp<CR>")
+vim.keymap.set("n", "<space>j", ":JumpCodecellDown<CR>")
+vim.keymap.set("n", "<space>x", ":RunCell<CR>")
+vim.keymap.set("n", "<space>dd", ":MoltenDelete<CR>")
+vim.keymap.set("n", "<space>mi", ":MoltenInit<CR>")
+vim.keymap.set("n", "<space>o", ":noautocmd MoltenEnterOutput<CR>")
+vim.keymap.set("n", "<space>rr", ":MoltenReevaluateCell<CR>")
+vim.keymap.set("n", "<space>oh", ":MoltenHideOutput<CR>")
+vim.keymap.set("n", "<space>rr", ":MoltenReevaluateCell<CR>")
+vim.keymap.set("v", "<space>x", ":<C-u>MoltenEvaluateVisual<CR>gv")
 
 -- visual mode keymaps (use commands to preserve selection)
 vim.keymap.set("v", "tn", ":<C-u>ToggleNumberVisual<CR>", {

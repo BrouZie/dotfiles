@@ -238,6 +238,17 @@ return {
 				},
 			}),
 
+			md_sources = cmp.config.sources({
+				{ name = "otter", group_index = 1},
+				{ name = "luasnip", group_index = 1},
+				{ name = "buffer", group_index = 3},
+				{ name = "path", group_index = 3},
+				{ name = "spell", group_index = 4},
+			}),
+
+			cmp.setup.filetype("markdown", { sources = md_sources }),
+			cmp.setup.filetype("markdown.mdx", { sources = md_sources }),
+
 			mapping = cmp.mapping.preset.insert({
 
 				["<C-e>"] = cmp.mapping.abort(), -- close completion window
