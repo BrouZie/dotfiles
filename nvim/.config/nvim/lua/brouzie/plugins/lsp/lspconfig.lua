@@ -42,7 +42,9 @@ return {
 
 				opts.desc = "Project: classes & interfaces"
 				vim.keymap.set("n", "<leader>pc", function()
-					require("telescope.builtin").lsp_dynamic_workspace_symbols({ symbols = { "class", "interface", "struct" }})
+					require("telescope.builtin").lsp_dynamic_workspace_symbols({
+						symbols = { "class", "interface", "struct" },
+					})
 				end, opts)
 
 				opts.desc = "See available code actions"
@@ -96,7 +98,7 @@ return {
 
 		-- Config lsp servers here
 		-- lua_ls
-		vim.lsp.config('lua_ls', {
+		vim.lsp.config("lua_ls", {
 			capabilities = capabilities,
 			settings = {
 				Lua = {
@@ -115,7 +117,7 @@ return {
 				},
 			},
 		})
-		vim.lsp.config('basedpyright', {
+		vim.lsp.config("basedpyright", {
 			capabilities = capabilities,
 			settings = {
 				basedpyright = {
@@ -127,11 +129,11 @@ return {
 			},
 		})
 
-		vim.lsp.config('ruff', {
+		vim.lsp.config("ruff", {
 			capabilities = capabilities,
 		})
 		-- emmet_ls
-		vim.lsp.config('emmet_ls', {
+		vim.lsp.config("emmet_ls", {
 			capabilities = capabilities,
 			filetypes = {
 				"html",
@@ -146,7 +148,7 @@ return {
 		})
 
 		-- emmet_language_server
-		vim.lsp.config('emmet_language_server', {
+		vim.lsp.config("emmet_language_server", {
 			capabilities = capabilities,
 			filetypes = {
 				"css",
@@ -172,36 +174,35 @@ return {
 				variables = {},
 			},
 		})
-		
+
 		-- .xml support
-		vim.lsp.config('lemminx', {
+		vim.lsp.config("lemminx", {
 			capabilities = capabilities,
 		})
-		vim.lsp.enable('lemminx')
 
 		-- denols
-		vim.lsp.config('denols', {
+		vim.lsp.config("denols", {
 			capabilities = capabilities,
 			root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
 		})
-		
+
 		-- clangd or c/c++
-		vim.lsp.config('clangd', {
+		vim.lsp.config("clangd", {
 			capabilities = capabilities,
 		})
 
 		-- bashls
-		vim.lsp.config('bashls', {
-			capabilities = capabilities
+		vim.lsp.config("bashls", {
+			capabilities = capabilities,
 		})
 
 		-- marksman
-		vim.lsp.config('marksman', {
-			capabilities = capabilities
+		vim.lsp.config("marksman", {
+			capabilities = capabilities,
 		})
 
 		-- ts_ls (replaces tsserver)
-		vim.lsp.config('ts_ls', {
+		vim.lsp.config("ts_ls", {
 			capabilities = capabilities,
 			root_dir = function(fname)
 				local util = lspconfig.util
@@ -216,15 +217,16 @@ return {
 				},
 			},
 		})
-		vim.lsp.enable('lua_ls')
-		vim.lsp.enable('basedpyright')
-		vim.lsp.enable('ruff')
-		vim.lsp.enable('emmet_ls')
-		vim.lsp.enable('emmet_language_server')
-		vim.lsp.enable('denols')
-		vim.lsp.enable('clangd')
-		vim.lsp.enable('bashls')
-		vim.lsp.enable('marksman')
-		vim.lsp.enable('ts_ls')
+		vim.lsp.enable("lua_ls")
+		vim.lsp.enable("basedpyright")
+		vim.lsp.enable("ruff")
+		vim.lsp.enable("emmet_ls")
+		vim.lsp.enable("emmet_language_server")
+		vim.lsp.enable("denols")
+		vim.lsp.enable("clangd")
+		vim.lsp.enable("bashls")
+		vim.lsp.enable("marksman")
+		vim.lsp.enable("lemminx")
+		vim.lsp.enable("ts_ls")
 	end,
 }

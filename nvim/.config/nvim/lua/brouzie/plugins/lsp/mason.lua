@@ -48,14 +48,14 @@ return {
 
 		mason_tool_installer.setup({
 			ensure_installed = {
-				-- "prettier", -- prettier formatter
+				"prettier", -- prettier formatter
 				"stylua", -- lua formatter
 				"ruff",
 				-- "isort", -- python formatter
 				-- "black",
 				"debugpy",
-				-- "clangd",
-				-- "denols",
+				"clangd",
+				"denols",
 				-- { 'eslint_d', version = '13.1.2' },
 			},
 		})
