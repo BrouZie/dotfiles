@@ -10,7 +10,7 @@ local function create_floating_window(opts)
 	-- local width = opts.width or math.floor(vim.o.columns * 0.3)
 	-- local height = opts.height or math.floor(vim.o.lines * 0.7)
 	local width = 50
-	local height = 32
+	local height = 25
 	print(width, height)
 
 	local col = math.floor((vim.o.columns - width) / 2)

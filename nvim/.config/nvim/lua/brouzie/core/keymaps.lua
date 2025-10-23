@@ -1,5 +1,5 @@
 vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+vim.g.maplocalleader = "\\"
 
 local map = vim.keymap.set
 
@@ -73,6 +73,16 @@ map('i', '<C-F>', 'copilot#Accept("\\<CR>")', {
 	expr = true,
 	replace_keycodes = false
 })
+
+-- Molten / jupyter plugin keymaps
+map("n", "<localleader>mi", ":MoltenInit<CR>", { silent = true, desc = "Initialize the plugin" })
+map("n", "<localleader>e", ":MoltenEvaluateOperator<CR>", { silent = true, desc = "run operator selection" })
+map("n", "<localleader>rl", ":MoltenEvaluateLine<CR>", { silent = true, desc = "evaluate line" })
+map("n", "<localleader>rr", ":MoltenReevaluateCell<CR>", { silent = true, desc = "re-evaluate cell" })
+map("v", "<localleader>r", ":<C-u>MoltenEvaluateVisual<CR>gv", { silent = true, desc = "evaluate visual selection" })
+map("n", "<localleader>rd", ":MoltenDelete<CR>", { silent = true, desc = "molten delete cell" })
+map("n", "<localleader>oh", ":MoltenHideOutput<CR>", { silent = true, desc = "hide output" })
+map("n", "<localleader>os", ":noautocmd MoltenEnterOutput<CR>", { silent = true, desc = "show/enter output" })
 
 -- Toggle LSP diagnostics visibility
 local isLspDiagnosticsVisible = true
