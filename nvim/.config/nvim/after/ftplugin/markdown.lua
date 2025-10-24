@@ -20,7 +20,7 @@ function ToggleNumberVisualSelection()
     end
 
     if has_numbers then
-        -- remove numbers 
+        -- remove numbers
         for i = 1, #lines do
             lines[i] = lines[i]:gsub("^%s*%d+%.%s*", "")
         end
@@ -360,7 +360,7 @@ vim.keymap.set("n", "<space>dd", ":MoltenDelete<CR>")
 vim.keymap.set("n", "<space>mi", ":MoltenInit<CR>")
 vim.keymap.set("n", "<space>o", ":noautocmd MoltenEnterOutput<CR>")
 vim.keymap.set("n", "<space>rr", ":MoltenReevaluateCell<CR>")
-vim.keymap.set("n", "<space>oh", ":MoltenHideOutput<CR>")
+vim.keymap.set("n", "<space>O", ":MoltenHideOutput<CR>")
 vim.keymap.set("n", "<space>rr", ":MoltenReevaluateCell<CR>")
 vim.keymap.set("v", "<space>x", ":<C-u>MoltenEvaluateVisual<CR>gv")
 
