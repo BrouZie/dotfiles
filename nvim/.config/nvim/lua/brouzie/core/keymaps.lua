@@ -3,8 +3,6 @@ vim.g.maplocalleader = "\\"
 
 local map = vim.keymap.set
 
-map("n", "<leader>f", ":Pick files<CR>")
-map("n", "<leader>h", ":Pick help<CR>")
 map("n", "<leader>ts", ":TodoTelescope<CR>")
 map("n", "<leader>gs", vim.cmd.Git)
 map("n", "<leader>gg", ":G ")
@@ -16,6 +14,9 @@ map("n", "<leader>S", ":sf #<CR>")
 map("n", "<leader>V", ":vsplit #<CR>")
 map("t", "", "")
 map("t", "", "")
+map("n", "<C-d>", "<C-d>zz")
+map("n", "<C-u>", "<C-u>zz")
+map("n", "<leader>E", "<cmd>Telescope env<CR>")
 
 -- Panes manipulation
 map("n", "<leader>v", ":vsplit<CR>")

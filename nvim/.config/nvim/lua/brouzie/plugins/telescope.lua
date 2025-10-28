@@ -6,6 +6,7 @@ return {
 		"nvim-lua/plenary.nvim",
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		"nvim-tree/nvim-web-devicons",
+		"LinArcX/telescope-env.nvim",
 		"andrew-george/telescope-themes",
 	},
 	config = function()
@@ -18,29 +19,44 @@ return {
 
 		telescope.setup({
 			defaults = {
-				path_display = { "smart" },
-				mappings = {
-					i = {
-						["<C-k>"] = actions.move_selection_previous,
-						["<C-j>"] = actions.move_selection_next,
+				preview = { treesitter = false },
+				color_devicons = true,
+				sorting_strategy = "ascending",
+				borderchars = {
+					"─", -- top
+					"│", -- right
+					"─", -- bottom
+					"│", -- left
+					"┌", -- top-left
+					"┐", -- top-right
+					"┘", -- bottom-right
+					"└", -- bottom-left
+				},
+				extensions = {
+					themes = {
+						enable_previewer = true,
+						enable_live_preview = true,
+						persist = {
+							enabled = true,
+							path = vim.fn.stdpath("config") .. "/lua/colorscheme.lua",
+						},
 					},
 				},
-			},
-			extensions = {
-				themes = {
-					enable_previewer = true,
-					enable_live_preview = true,
-					persist = {
-						enabled = true,
-						path = vim.fn.stdpath("config") .. "/lua/colorscheme.lua",
-					},
+				path_displays = { "smart" },
+				layout_config = {
+					height = 100,
+					width = 400,
+					prompt_position = "top",
+					preview_cutoff = 40,
 				},
 			},
 		})
 
 		-- Keymaps
-		vim.keymap.set("n", "<leader>lg", builtin.live_grep, { desc = "Telescope live grep" })
+		vim.keymap.set("n", "<leader>G", builtin.live_grep, { desc = "Telescope live grep" })
 		vim.keymap.set("n", "<leader>F", builtin.git_files, { desc = "Telescope git files" })
+		vim.keymap.set("n", "<leader>M", builtin.man_pages, { desc = "Telescope man pages" })
+		vim.keymap.set("n", "<leader>#", builtin.buffers)
 		-- vim.keymap.set("n", "<leader>km", builtin.keymaps, { desc = "Telescope keymaps" })
 		vim.keymap.set("n", "<leader>r", "<cmd>Telescope oldfiles<CR>", { desc = "Fuzzy find recent files" })
 		vim.keymap.set("n", "<leader>pws", function()
