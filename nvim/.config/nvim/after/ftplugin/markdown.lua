@@ -361,8 +361,6 @@ vim.keymap.set("n", "<space>mi", ":MoltenInit<CR>")
 vim.keymap.set("n", "<space>o", ":noautocmd MoltenEnterOutput<CR>")
 vim.keymap.set("n", "<space>X", ":MoltenReevaluateCell<CR>")
 vim.keymap.set("n", "<space>O", ":MoltenHideOutput<CR>")
-vim.keymap.set("n", "<space>rr", ":MoltenReevaluateCell<CR>")
-vim.keymap.set("v", "<space>x", ":<C-u>MoltenEvaluateVisual<CR>gv")
 
 -- visual mode keymaps (use commands to preserve selection)
 vim.keymap.set("v", "tn", ":<C-u>ToggleNumberVisual<CR>", {
