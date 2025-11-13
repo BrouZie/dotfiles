@@ -108,6 +108,7 @@ return {
 					completion = {
 						callSnippet = "Replace",
 					},
+					hint = { enable = true },
 					workspace = {
 						library = {
 							[vim.fn.expand("$VIMRUNTIME/lua")] = true,
@@ -189,6 +190,17 @@ return {
 		-- clangd or c/c++
 		vim.lsp.config("clangd", {
 			capabilities = capabilities,
+			settings = {
+				clangd = {
+					InlayHints = {
+						Designators = true,
+						Enabled = true,
+						ParameterNames = true,
+						DeducedTypes = true,
+					},
+					-- fallbackFlags = { "-std=c++23" }
+				}
+			}
 		})
 
 		-- bashls

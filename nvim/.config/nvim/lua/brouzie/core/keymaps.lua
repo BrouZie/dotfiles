@@ -3,8 +3,6 @@ vim.g.maplocalleader = "\\"
 
 local map = vim.keymap.set
 
-map("n", "<leader>f", ":Pick files<CR>")
-map("n", "<leader>h", ":Pick help<CR>")
 map("n", "<leader>ts", ":TodoTelescope<CR>")
 map("n", "<leader>gs", vim.cmd.Git)
 map("n", "<leader>gg", ":G ")
@@ -16,6 +14,9 @@ map("n", "<leader>S", ":sf #<CR>")
 map("n", "<leader>V", ":vsplit #<CR>")
 map("t", "", "")
 map("t", "", "")
+map("n", "<C-d>", "<C-d>zz")
+map("n", "<C-u>", "<C-u>zz")
+map("n", "<leader>E", "<cmd>Telescope env<CR>")
 
 -- Panes manipulation
 map("n", "<leader>v", ":vsplit<CR>")
@@ -66,6 +67,11 @@ map('i', '<C-F>', 'copilot#Accept("\\<CR>")', {
 	replace_keycodes = false
 })
 
+-- Inlay hints
+map("n", "<leader>H", function()
+	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end)
+
 -- Toggle LSP diagnostics visibility
 local isLspDiagnosticsVisible = true
 vim.keymap.set("n", "<leader>lx", function()
@@ -75,15 +81,3 @@ vim.keymap.set("n", "<leader>lx", function()
 		underline = isLspDiagnosticsVisible,
 	})
 end, { desc = "Toggle LSP diagnostics" })
-
--- Run python with uv
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "python" },
-  callback = function()
-		vim.keymap.set('n', '<leader>x', function()
-			vim.cmd('update') -- save
-			vim.cmd('belowright split | resize 12')
-			vim.cmd('terminal uv run python ' .. vim.fn.shellescape(vim.fn.expand('%')))
-		end, { desc = 'Run current Python file with uv' })
-  end,
-})

@@ -1,5 +1,4 @@
 return {
-	-- NOTE: Rose pine
 	{
 		"rose-pine/neovim",
 		name = "rose-pine",
@@ -15,7 +14,7 @@ return {
 				extend_background_behind_borders = true,
 				styles = {
 					bold = true,
-					italic = true,
+					italic = false,
 					transparency = true,
 				},
 				highlight_groups = {
@@ -36,8 +35,32 @@ return {
 			-- vim.cmd("colorscheme rose-pine")
 		end,
 	},
+	{
+			"scottmckendry/cyberdream.nvim",
+			lazy = false,
+			priority = 1000,
+			config = function()
+				require("cyberdream").setup({
+					dark_variant = true,
+					transparent = true,
+				})
+			end,
+
+	},
+	{
+		"vague-theme/vague.nvim",
+		lazy = false, -- make sure we load this during startup if it is your main colorscheme
+		priority = 1000, -- make sure to load this before all the other plugins
+		config = function()
+			require("vague").setup({
+				transparent = true,
+				bold = true,
+				italic = true,
+				-- optional configuration here
+			})
+		end,
+	},
 	{ "catppuccin/nvim", name = "catppuccin", priority = 1000, opts = {transparent_background = true} },
-	-- NOTE: gruvbox
 	{
 		"ellisonleao/gruvbox.nvim",
 		-- priority = 1000 ,
@@ -70,12 +93,9 @@ return {
 			})
 		end,
 	},
-
-	-- NOTE: Melange
 	{
 		"savq/melange-nvim"
 	},
-	-- NOTE: Kanagwa
 	{
 		"rebelot/kanagawa.nvim",
 		config = function()
@@ -137,7 +157,6 @@ return {
 			})
 		end,
 	},
-	-- NOTE: neosolarized
 	{
 		"craftzdog/solarized-osaka.nvim",
 		lazy = false,
@@ -194,7 +213,6 @@ return {
 			})
 		end,
 	},
-	-- NOTE : tokyonight
 	{
 		"folke/tokyonight.nvim",
 		name = "folkeTokyonight",
@@ -240,7 +258,6 @@ return {
 				end,
 			})
 			-- vim.cmd("colorscheme tokyonight")
-			-- NOTE: Auto switch to tokyonight for markdown files only
 			-- vim.api.nvim_create_autocmd("FileType", {
 			--     pattern = { "markdown" },
 			--     callback = function()
