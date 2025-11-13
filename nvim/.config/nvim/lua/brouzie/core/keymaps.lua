@@ -67,6 +67,11 @@ map('i', '<C-F>', 'copilot#Accept("\\<CR>")', {
 	replace_keycodes = false
 })
 
+-- Inlay hints
+map("n", "<leader>H", function()
+	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end)
+
 -- Toggle LSP diagnostics visibility
 local isLspDiagnosticsVisible = true
 vim.keymap.set("n", "<leader>lx", function()
