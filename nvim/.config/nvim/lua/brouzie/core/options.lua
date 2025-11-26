@@ -1,4 +1,3 @@
-vim.cmd([[set mouse=]])
 vim.opt.undofile = true
 vim.opt.winborder = "rounded"
 vim.opt.ignorecase = true
@@ -16,7 +15,41 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.termguicolors = true
 vim.opt.clipboard:append("unnamedplus")
+vim.opt.exrc = true
+vim.opt.secure = true
 
--- Copilot
+-- Copilot (uncomment and follow docs to enable Copilot)
 -- vim.g.copilot_no_tab_map = true
 -- vim.g.copilot_enabled = false
+
+
+--- Dadbod (SQL setup) ---
+
+-- Save location of query buffers
+vim.g.db_ui_save_location = vim.fn.stdpath("data") .. "/db_ui"
+vim.g.db_ui_use_nerd_fonts = 1
+
+-- Define saved connections (Dadbod expands $ENV vars at runtime)
+-- We'll load the .env before launching nvim so these get filled.
+vim.g.dbs = {
+  northwind = "mariadb://$MYSQL_USER:$MYSQL_PASSWORD@127.0.0.1:3306/$MYSQL_DATABASE",
+	objective_db = "sqlite:" .. vim.fn.getcwd() .. "/sql/runs.db",
+	sqlite3 = "sqlite:" .. vim.fn.getcwd() .. "/sqlite3.db",
+}
+
+-- Completions for SQL
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "sql", "mysql", "plsql", "sqlite" },
+  callback = function()
+    local ok, cmp = pcall(require, "cmp")
+    if ok then
+      cmp.setup.buffer({
+        sources = cmp.config.sources({
+          { name = "vim-dadbod-completion" },
+          { name = "buffer" },
+          { name = "path" },
+        }),
+      })
+    end
+  end,
+})

@@ -1,5 +1,9 @@
 local set = vim.opt_local
 
+-- Set :make to compile using pandoc
+vim.bo.makeprg = "pandoc % -o %<.pdf --pdf-engine=tectonic"
+vim.bo.errorformat = "%f:%l:%c: %m,%f:%l: %m"
+
 set.textwidth = 80   -- move text to new line at 80 characters
 -- set.spell = true     -- Enable spell checking
 set.linebreak = true
