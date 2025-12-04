@@ -1,6 +1,10 @@
 backend = "resized"
-palette = "harddark"
+threshold = 13
+palette = "dark"
 
 [templates]
 kitty.template = 'kitty-colors.conf'
 kitty.target = '~/.config/kitty/colors-wallust.conf'
+
+ghostty.template = 'ghostty-colors'
+ghostty.target = '~/.config/ghostty/ghostty-colors'

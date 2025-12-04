@@ -4,8 +4,8 @@ vim.g.maplocalleader = "\\"
 local map = vim.keymap.set
 
 map("n", "<leader>ts", ":TodoTelescope<CR>")
-map("n", "<leader>gs", vim.cmd.Git)
-map("n", "<leader>gg", ":G ")
+map("n", "<leader>Gs", vim.cmd.Git)
+map("n", "<leader>GG", ":G ")
 map("n", "<leader>e", ":Oil<CR>")
 map("n", "<leader>w", ":update<CR>")
 map("n", "<leader>q", ":quit<CR>")

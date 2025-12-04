@@ -53,7 +53,7 @@ return {
 		})
 
 		-- Keymaps
-		vim.keymap.set("n", "<leader>G", builtin.live_grep, { desc = "Telescope live grep" })
+		vim.keymap.set("n", "<leader>g", builtin.live_grep, { desc = "Telescope live grep" })
 		vim.keymap.set("n", "<leader>F", builtin.git_files, { desc = "Telescope git files" })
 		vim.keymap.set("n", "<leader>M", builtin.man_pages, { desc = "Telescope man pages" })
 		vim.keymap.set("n", "<leader>#", builtin.buffers)
