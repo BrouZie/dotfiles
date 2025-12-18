@@ -25,12 +25,19 @@ return {
 			},
 		})
 
+		-- Provides mason-names e.g: 'lua_ls' instead of 'lua-language-server'
 		mason_lspconfig.setup({
 			automatic_enable = false,
-			-- servers for mason to install
+		})
+
+		mason_tool_installer.setup({
 			ensure_installed = {
+				"prettier", -- prettier formatter
+				"stylua", -- lua formatter
+				"debugpy",
+				"clangd",
+				"denols",
 				"lua_ls",
-				-- "ts_ls", currently using a ts plugin
 				"bashls",
 				"basedpyright",
 				"ruff",
@@ -40,23 +47,8 @@ return {
 				"gopls",
 				"emmet_ls",
 				"emmet_language_server",
-				-- "eslint",
 				"marksman",
 				"lemminx"
-			},
-		})
-
-		mason_tool_installer.setup({
-			ensure_installed = {
-				"prettier", -- prettier formatter
-				"stylua", -- lua formatter
-				"ruff",
-				-- "isort", -- python formatter
-				-- "black",
-				"debugpy",
-				"clangd",
-				"denols",
-				-- { 'eslint_d', version = '13.1.2' },
 			},
 		})
 	end,
