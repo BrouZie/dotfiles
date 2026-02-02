@@ -16,7 +16,6 @@ map("t", "", "")
 map("t", "", "")
 map("n", "<C-d>", "<C-d>zz")
 map("n", "<C-u>", "<C-u>zz")
-map("n", "<leader>E", "<cmd>Telescope env<CR>")
 
 -- Panes manipulation
 map("n", "<leader>v", ":vsplit<CR>")

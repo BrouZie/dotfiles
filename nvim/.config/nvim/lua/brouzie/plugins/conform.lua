@@ -23,6 +23,13 @@ return {
 						return #diag > 0
 					end,
 				},
+				["clang-format"] = {
+					args = {
+						"--assume-filename",
+						"$FILENAME",
+						"--style={BasedOnStyle: WebKit, IndentWidth: 2, UseTab: Never, ColumnLimit: 100}", -- Force open-braces: "BreakBeforeBraces: Allman"
+					},
+				},
 			},
 			formatters_by_ft = {
 				lua = { "stylua" },
@@ -39,6 +46,8 @@ return {
 				graphql = { "prettier" },
 				liquid = { "prettier" },
 				markdown = { "prettier", "markdown-toc" },
+				cpp = { "clang-format" },
+				c = { "clang-format" }
 				-- ["markdown.mdx"] = { "prettier", "markdownlint-cli2", "markdown-toc" },
 			},
 			-- format_on_save = {

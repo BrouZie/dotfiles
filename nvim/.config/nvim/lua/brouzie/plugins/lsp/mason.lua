@@ -35,6 +35,7 @@ return {
 				"prettier", -- prettier formatter
 				"stylua", -- lua formatter
 				"debugpy",
+				"delve",
 				"clangd",
 				"denols",
 				"lua_ls",
@@ -48,7 +49,11 @@ return {
 				"emmet_ls",
 				"emmet_language_server",
 				"marksman",
-				"lemminx"
+				"lemminx",
+				"clang-format",
+				"hyprls",
+				"codelldb",
+				"shellcheck"
 			},
 		})
 	end,

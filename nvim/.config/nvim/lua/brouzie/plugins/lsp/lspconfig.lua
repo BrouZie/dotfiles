@@ -198,9 +198,16 @@ return {
 						ParameterNames = true,
 						DeducedTypes = true,
 					},
-					-- fallbackFlags = { "-std=c++23" }
-				}
-			}
+					fallbackFlags = { "-std=c++20" }
+				},
+			},
+			cmd = {
+				"clangd",
+				"--background-index",
+				"--clang-tidy",
+				"--completion-style=detailed",
+				"--header-insertion=iwyu",
+			},
 		})
 
 		-- bashls
@@ -210,6 +217,11 @@ return {
 
 		-- marksman
 		vim.lsp.config("marksman", {
+			capabilities = capabilities,
+		})
+
+		-- hyprland language server
+		vim.lsp.config("hyprls", {
 			capabilities = capabilities,
 		})
 
@@ -240,5 +252,6 @@ return {
 		vim.lsp.enable("marksman")
 		vim.lsp.enable("lemminx")
 		vim.lsp.enable("ts_ls")
+		vim.lsp.enable("hyprls")
 	end,
 }
