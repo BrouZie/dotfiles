@@ -27,7 +27,7 @@ return {
 					args = {
 						"--assume-filename",
 						"$FILENAME",
-						"--style={BasedOnStyle: WebKit, IndentWidth: 2, UseTab: Never, ColumnLimit: 100}", -- Force open-braces: "BreakBeforeBraces: Allman"
+						"--style={BasedOnStyle: WebKit, BreakBeforeBraces: Allman, IndentWidth: 2, UseTab: Never, ColumnLimit: 100}", -- Force open-braces: "BreakBeforeBraces: Allman"
 					},
 				},
 			},

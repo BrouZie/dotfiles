@@ -1,0 +1,10 @@
+local cells = require("brouzie.utils.mdcells")
+
+vim.keymap.set("n", "<space>k", cells.jump_up,   { desc = "Jump to previous code cell", buffer = true })
+vim.keymap.set("n", "<space>j", cells.jump_down, { desc = "Jump to next code cell",     buffer = true })
+vim.keymap.set("n", "<space>x", function() cells.run_cell("r") end, { desc = "Run current code cell", buffer = true })
+vim.keymap.set("n", "<space>X",  ":MoltenReevaluateCell<CR>",        { desc = "Re-run current cell",  buffer = true })
+vim.keymap.set("n", "<space>dd", ":MoltenDelete<CR>",                { desc = "Delete cell output",   buffer = true })
+vim.keymap.set("n", "<space>mi", ":MoltenInit ir<CR>",               { desc = "Init R kernel",        buffer = true })
+vim.keymap.set("n", "<space>o",  ":noautocmd MoltenEnterOutput<CR>", { desc = "Enter output window",  buffer = true })
+vim.keymap.set("n", "<space>O",  ":MoltenHideOutput<CR>",            { desc = "Hide output",          buffer = true })

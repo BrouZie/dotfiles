@@ -53,7 +53,8 @@ return {
 				"clang-format",
 				"hyprls",
 				"codelldb",
-				"shellcheck"
+				"shellcheck",
+				-- "r-languageserver" -- installed globally using r: install.packages("languageserver")
 			},
 		})
 	end,

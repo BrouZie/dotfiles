@@ -4,6 +4,13 @@ local set = vim.opt_local
 vim.bo.makeprg = "pandoc % -o %<.pdf --pdf-engine=tectonic"
 vim.bo.errorformat = "%f:%l:%c: %m,%f:%l: %m"
 
+-- Additional conversion commands
+vim.api.nvim_create_user_command("MdToNotebook", function()
+  local cmd = "~/.venvs/nvim/bin/jupytext --to notebook " .. vim.fn.expand("%:p")
+  vim.fn.system(cmd)
+  vim.notify("Created " .. vim.fn.expand("%<") .. ".ipynb", vim.log.levels.INFO)
+end, { desc = "Convert markdown to .ipynb" })
+
 set.textwidth = 80   -- move text to new line at 80 characters
 -- set.spell = true     -- Enable spell checking
 set.linebreak = true
@@ -308,43 +315,6 @@ function SmartListToggleCurrentLine()
     vim.fn.setline(line_num, line)
 end
 
-function JumpCodecellUp()
-	local header = vim.fn.search("^```python\\s*$", "bnw")
-	local head_dist = vim.api.nvim_win_get_cursor(0)[1] - header
-	if head_dist > 4 then
-		vim.api.nvim_win_set_cursor(0, { header + 1, 0 } )
-	elseif head_dist < 4 then
-		vim.api.nvim_win_set_cursor(0, { header, 0})
-		vim.cmd("normal zz")
-		local new_head = vim.fn.search("^```python\\s*$", "bw")
-		vim.api.nvim_win_set_cursor(0, { new_head + 1, 0 } )
-		vim.cmd("normal zz")
-	else
-		print("No codeblocks in file")
-	end
-end
-
-function JumpCodecellDown()
-	local header = vim.fn.search("^```python\\s*$", "nw")
-	vim.api.nvim_win_set_cursor(0, { header + 1, 0 } )
-	vim.cmd("normal zz")
-end
-
-function RunCell()
-	-- try except maybe
-	local start_line = vim.fn.search("^```python\\s*$", "bnW")
-	local end_line = vim.fn.search("^```\\s*$", "nW")
-
-	if start_line > 0 and end_line > start_line + 1 then
-		vim.api.nvim_win_set_cursor(0, { start_line + 1, 0 })
-		vim.cmd("normal! V")
-		vim.api.nvim_win_set_cursor( 0, { end_line - 1, 0 })
-		vim.cmd("MoltenEvaluateOperator")
-		vim.cmd("normal zz")
-	end
-end
-
-
 -- user commands
 vim.api.nvim_create_user_command("ToggleNumberVisual", ToggleNumberVisualSelection, {})
 vim.api.nvim_create_user_command("ToggleBulletVisual", ToggleBulletVisualSelection, {})
@@ -352,19 +322,17 @@ vim.api.nvim_create_user_command("ToggleCheckboxVisual", ToggleCheckboxVisualSel
 vim.api.nvim_create_user_command("ToggleTaskStateVisual", ToggleTaskStateVisualSelection, {})
 vim.api.nvim_create_user_command("SmartListToggleVisual", SmartListToggleVisualSelection, {})
 
--- Jupyter setup with Molten ++
-vim.api.nvim_create_user_command("JumpCodecellUp", JumpCodecellUp, {})
-vim.api.nvim_create_user_command("JumpCodecellDown", JumpCodecellDown, {})
-vim.api.nvim_create_user_command("RunCell", RunCell, {})
+-- Jupyter setup with Molte 
+local cells = require("brouzie.utils.mdcells")
 
-vim.keymap.set("n", "<space>k", ":JumpCodecellUp<CR>")
-vim.keymap.set("n", "<space>j", ":JumpCodecellDown<CR>")
-vim.keymap.set("n", "<space>x", ":RunCell<CR>")
-vim.keymap.set("n", "<space>dd", ":MoltenDelete<CR>")
-vim.keymap.set("n", "<space>mi", ":MoltenInit<CR>")
-vim.keymap.set("n", "<space>o", ":noautocmd MoltenEnterOutput<CR>")
-vim.keymap.set("n", "<space>X", ":MoltenReevaluateCell<CR>")
-vim.keymap.set("n", "<space>O", ":MoltenHideOutput<CR>")
+vim.keymap.set("n", "<space>k", cells.jump_up,   { desc = "Jump to previous code cell" })
+vim.keymap.set("n", "<space>j", cells.jump_down, { desc = "Jump to next code cell" })
+vim.keymap.set("n", "<space>x", function() require("brouzie.utils.mdcells").run_cell("python") end)
+vim.keymap.set("n", "<space>X", ":MoltenReevaluateCell<CR>", { desc = "Re-run current cell" })
+vim.keymap.set("n", "<space>dd", ":MoltenDelete<CR>",        { desc = "Delete cell output" })
+vim.keymap.set("n", "<space>mi", ":MoltenInit<CR>",          { desc = "Init Molten kernel" })
+vim.keymap.set("n", "<space>o",  ":noautocmd MoltenEnterOutput<CR>", { desc = "Enter output window" })
+vim.keymap.set("n", "<space>O",  ":MoltenHideOutput<CR>",    { desc = "Hide output" })
 
 -- visual mode keymaps (use commands to preserve selection)
 vim.keymap.set("v", "tn", ":<C-u>ToggleNumberVisual<CR>", {

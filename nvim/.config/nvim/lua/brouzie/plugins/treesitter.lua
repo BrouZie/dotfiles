@@ -4,6 +4,7 @@ return {
 		branch = "master",
 		build = ":TSUpdate",
 		config = function()
+			vim.treesitter.language.register("markdown", "rmd") -- use markdown for .Rmd files (R - language)
 			require("nvim-treesitter.configs").setup({
 				ensure_installed = {
 					"bash",
@@ -18,6 +19,8 @@ return {
 					"go",
 					"vimdoc",
 					"c",
+					"cpp",
+					"r",
 					"sql",
 				},
 				auto_install = false,

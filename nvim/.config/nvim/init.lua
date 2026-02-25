@@ -1,5 +1,3 @@
-require("brouzie.utils")
-
 vim.g.python3_host_prog = "~/.venvs/nvim/bin/python" -- Viktig for python provider
 
 require("brouzie.core.options")

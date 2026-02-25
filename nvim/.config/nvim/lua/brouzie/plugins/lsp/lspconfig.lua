@@ -225,6 +225,14 @@ return {
 			capabilities = capabilities,
 		})
 
+		-- r language server
+		vim.lsp.config("r_ls", {
+			capabilities = capabilities,
+			cmd = { "R", "--slave", "-e", "languageserver::run()" },
+			filetypes = { "r", "rmd" },
+			root_markers = { ".git", "DESCRIPTION", ".Rproj" },
+		})
+
 		-- ts_ls (replaces tsserver)
 		vim.lsp.config("ts_ls", {
 			capabilities = capabilities,
@@ -253,5 +261,6 @@ return {
 		vim.lsp.enable("lemminx")
 		vim.lsp.enable("ts_ls")
 		vim.lsp.enable("hyprls")
+		vim.lsp.enable("r_ls")
 	end,
 }
