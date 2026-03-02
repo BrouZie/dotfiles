@@ -6,11 +6,12 @@ return {
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		"nvim-tree/nvim-web-devicons",
 		"LinArcX/telescope-env.nvim", -- fzf over env variables
+		"andrew-george/telescope-themes" -- fzf themes
 	},
 
 	keys = {
 		{ "<leader>g", "<cmd>Telescope live_grep<cr>", desc = "Telescope live grep" },
-		{ "<leader>f", "<cmd>Telescope find_files<cr>", desc = "Telescope find files" },
+		-- { "<leader>f", "<cmd>Telescope find_files<cr>", desc = "Telescope find files" },
 		{ "<leader>F", "<cmd>Telescope git_files<cr>", desc = "Telescope git files" },
 		{ "<leader>M", "<cmd>Telescope man_pages<cr>", desc = "Telescope man pages" },
 		{ "<leader>#", "<cmd>Telescope buffers<cr>", desc = "Telescope buffers" },
@@ -26,20 +27,21 @@ return {
 			desc = "Grep WORD under cursor",
 		},
 		-- Additional telescope binds
-		{ "<leader>ths", ":Telescope colorscheme ignore_builtins=true<CR>", desc = "Colorscheme picker" },
+		{ "<leader>ths", "<cmd>Telescope themes<CR>", desc = "Colorscheme picker" },
 		{ "<leader>E", ":Telescope env<CR>", desc = "Environment variables" },
 	},
 
 	config = function()
 		local telescope = require("telescope")
-		local themes = require("telescope.themes")
 
 		telescope.setup({
-			defaults = themes.get_ivy({
-				path_display = { "smart" },
-			}),
-			extensions = {
-				fzf = {},
+			defaults = {
+				sorting_strategy = "ascending",
+				path_displays = { "smart" },
+				preview = { treesitter = false },
+				layout_config = {
+					prompt_position = "top"
+				},
 			},
 		})
 

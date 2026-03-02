@@ -17,46 +17,60 @@ return {
 				local opts = { buffer = ev.buf, silent = true }
 
 				-- keymaps
+				-- inside your LspAttach/on_attach, keep your opts table
 				opts.desc = "Show LSP references"
-				vim.keymap.set("n", "grr", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
+				vim.keymap.set("n", "grr", function()
+					require("fzf-lua").lsp_references()
+				end, opts)
 
 				opts.desc = "Go to declaration"
-				vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts) -- go to declaration
+				vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
 
 				opts.desc = "Show LSP definitions"
-				vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
+				vim.keymap.set("n", "gd", function()
+					require("fzf-lua").lsp_definitions({ jump_to_single_result = true })
+				end, opts)
 
 				opts.desc = "Show LSP implementations"
-				vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts) -- show lsp implementations
+				vim.keymap.set("n", "gi", function()
+					require("fzf-lua").lsp_implementations({ jump_to_single_result = true })
+				end, opts)
 
 				opts.desc = "Show LSP type definitions"
-				vim.keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts) -- show lsp type definitions
+				vim.keymap.set("n", "gt", function()
+					require("fzf-lua").lsp_typedefs({ jump_to_single_result = true })
+				end, opts)
 
 				opts.desc = "Show LSP project symbols"
-				vim.keymap.set("n", "<leader>ps", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", opts) -- show lsp type definitions
+				vim.keymap.set("n", "<leader>ps", function()
+					require("fzf-lua").lsp_workspace_symbols()
+				end, opts)
 
 				opts.desc = "Project: functions & methods"
 				vim.keymap.set("n", "<leader>pf", function()
-					require("telescope.builtin").lsp_dynamic_workspace_symbols({ symbols = { "function", "method" } })
+					require("fzf-lua").lsp_workspace_symbols({
+						query = "function|method", -- quick filter string
+					})
 				end, opts)
 
 				opts.desc = "Project: classes & interfaces"
 				vim.keymap.set("n", "<leader>pc", function()
-					require("telescope.builtin").lsp_dynamic_workspace_symbols({
-						symbols = { "class", "interface", "struct" },
+					require("fzf-lua").lsp_workspace_symbols({
+						query = "class|interface|struct",
 					})
 				end, opts)
 
 				opts.desc = "See available code actions"
-				vim.keymap.set({ "n", "v" }, "<leader>ca", function()
-					vim.lsp.buf.code_action()
-				end, opts) -- see available code actions, in visual mode will apply to selection
+				vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
 
 				opts.desc = "Smart rename"
-				vim.keymap.set("n", "grn", vim.lsp.buf.rename, opts) -- smart rename
+				vim.keymap.set("n", "grn", vim.lsp.buf.rename, opts)
 
+				-- diagnostics picker (Telescope diagnostics bufnr=0)
 				opts.desc = "Show buffer diagnostics"
-				vim.keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
+				vim.keymap.set("n", "<leader>D", function()
+					require("fzf-lua").diagnostics_document()
+				end, opts)
 
 				opts.desc = "Show line diagnostics"
 				vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts) -- show diagnostics for line
@@ -198,7 +212,7 @@ return {
 						ParameterNames = true,
 						DeducedTypes = true,
 					},
-					fallbackFlags = { "-std=c++20" }
+					fallbackFlags = { "-std=c++20" },
 				},
 			},
 			cmd = {
