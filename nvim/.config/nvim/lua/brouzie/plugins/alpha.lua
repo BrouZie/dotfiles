@@ -6,61 +6,47 @@ return {
     local alpha     = require("alpha")
     local dashboard = require("alpha.themes.dashboard")
 
-    -- 1) Your new ASCII art (23 lines × 44 cols)
+    -- Highlight groups for the sokratOS logo (re-apply after colorscheme changes)
+    local function set_sokrat_hl()
+      vim.api.nvim_set_hl(0, "SokratBold", { fg = "#ffffff", bold = true })
+      vim.api.nvim_set_hl(0, "SokratBlue", { fg = "#1793d1" })
+    end
+    vim.api.nvim_create_autocmd("ColorScheme", { callback = set_sokrat_hl })
+    set_sokrat_hl()
+
     dashboard.section.header.val = {
-      "****************=::::::::::=***************#",
-      "************:-=======-========-:***********#",
-      "*********:======::::::::::-=======:********#",
-      "******+:=======*-:=+=:-::---========:+*****#",
-      "*****:==========*+##*+--=##-+=========:****#",
-      "***+-==========+*+++====+==*+==========-+**#",
-      "**=============#*=-========#==============*#",
-      "**:============#+**%%*-###*+=============:*#",
-      "*:==============++==++-+==================:#",
-      "*-===============+++=*+#=**================#",
-      ":================++*+*#*+*=================:#",
-      ":==============*++++==+=++==+==============:#",
-      ":=========-----*+++++****+==::::===========:#",
-      "*=======::::--:-=+++***++=::::-:::::=======#",
-      "*:====:::::-::::=---=++=-:--:=--:::::=====:#",
-      "**-===::::---:=--:---=--:-::-::-:-::::===-*#",
-      "**:===::----:::::-::::::::-::::-:::-:-===:*#",
-      "***-===-==:=::::::::+::-:-:::::--=---===-**#",
-      "*****:====-=--::-:=::+++:-:-:::--+=++=:****#",
-      "##****::+++=-:::-=-=-=+*=:=:-:=-*+++-:*****#",
-      "***#***#+:++*=--+-==++--=-----++++:+##*****#",
-      "##****#####-:*----------------=::#####*****#",
-      "##***#####%%%%%%::::+%%*::::%%%%%#####*****#",
+      [[              __                     __    _____   ____  ]],
+      [[             /\ \                   /\ \__/\  __`\/\  _`\]],
+      [[  ____    ___\ \ \/'\   _ __    __  \ \ ,_\ \ \/\ \ \,\L\_\]],
+      [[ /',__\  / __`\ \ , <  /\`'__\/'__`\ \ \ \/\ \ \ \ \/_\__ \]],
+      [[/\__, `\/\ \L\ \ \ \\`\\ \ \//\ \L\.\_\ \ \_\ \ \_\ \/\ \L\ \]],
+      [[\/\____/\ \____/\ \_\ \_\ \_\\ \__/.\_\\ \__\\ \_____\ `\____\]],
+      [[ \/___/  \/___/  \/_/\/_/\/_/ \/__/\/_/ \/__/ \/_____/\/_____/]],
     }
 
-    -- 2) Slice each 44-char line into 11 spans of 4 cols, each with its own I2A color:
-    local gradient = {
-      { "I2A1",   0,  4 },  -- red
-      { "I2A3",   4,  8 },  -- yellow
-      { "I2A7",   8, 12 },  -- orange
-      { "I2A2",  12, 16 },  -- green
-      { "I2A8",  16, 20 },  -- bright-green
-      { "I2A6",  20, 24 },  -- cyan
-      { "I2A9",  24, 28 },  -- bright-cyan
-      { "I2A4",  28, 32 },  -- blue
-      { "I2A10", 32, 36 },  -- light-blue
-      { "I2A5",  36, 40 },  -- magenta
-      { "I2A11", 40, 44 },  -- white
-    }
+    -- Per-line column boundaries where OS rendering begins
+    local boundaries = { 43, 42, 44, 43, 44, 45, 46 }
 
-    -- 3) Apply that same 11-span gradient to every header line:
     dashboard.section.header.opts.hl = {}
-    for _ = 1, #dashboard.section.header.val do
-      -- make a shallow copy so each line gets its own table
-      table.insert(dashboard.section.header.opts.hl, vim.deepcopy(gradient))
+    for i, boundary in ipairs(boundaries) do
+      table.insert(dashboard.section.header.opts.hl, {
+        { "SokratBold", 0, boundary },
+        { "SokratBlue", boundary, 62 },
+      })
     end
 
     -- 4) Buttons
     dashboard.section.buttons.val = {
-      dashboard.button("e", "  New file",     ":ene <BAR> startinsert <CR>"),
-      dashboard.button("f", "λ  Find file",    ":Telescope find_files<CR>"),
-      dashboard.button("r", "λ  Recent files", ":Telescope oldfiles<CR>"),
-      dashboard.button("q", "  Quit NVIM",    ":qa<CR>"),
+			dashboard.button("f", "󰈞  Find file",    ":Telescope find_files<CR>"),
+			dashboard.button("G", "  Git Status",   function()
+				local alpha_buf = vim.api.nvim_get_current_buf()
+				vim.cmd.Git()
+				vim.api.nvim_buf_delete(alpha_buf, { force = true })
+			end),
+			dashboard.button("g", "󰈬  Grep word",    ":Telescope live_grep<CR>"),
+      dashboard.button("e", "  Explore",      ":Oil<CR>"),
+      dashboard.button("r", "󰊄  Recent files", ":Telescope oldfiles<CR>"),
+      dashboard.button("q", "󰈆  Quit NVIM",    ":qa<CR>"),
     }
 
     alpha.setup(dashboard.opts)

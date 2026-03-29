@@ -11,6 +11,12 @@ vim.api.nvim_create_user_command("MdToNotebook", function()
   vim.notify("Created " .. vim.fn.expand("%<") .. ".ipynb", vim.log.levels.INFO)
 end, { desc = "Convert markdown to .ipynb" })
 
+vim.api.nvim_create_user_command("NotebookToMd", function()
+  local cmd = "~/.venvs/nvim/bin/jupytext --to markdown " .. vim.fn.expand("%:p")
+  vim.fn.system(cmd)
+  vim.notify("Created " .. vim.fn.expand("%<") .. ".md", vim.log.levels.INFO)
+end, { desc = "Convert jupyter notebook to .md" })
+
 set.textwidth = 80   -- move text to new line at 80 characters
 -- set.spell = true     -- Enable spell checking
 set.linebreak = true

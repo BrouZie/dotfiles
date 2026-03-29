@@ -5,8 +5,8 @@ vim.opt.smartcase = true
 vim.opt.cursorcolumn = false
 vim.opt.guicursor = ""
 vim.opt.signcolumn = "yes"
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
 vim.opt.smartindent = true
 vim.opt.splitright = true
 vim.opt.splitbelow = true
@@ -35,7 +35,7 @@ vim.g.db_ui_use_nerd_fonts = 1
 vim.g.dbs = {
 	northwind = "mariadb://$MYSQL_USER:$MYSQL_PASSWORD@127.0.0.1:3306/$MYSQL_DATABASE",
 	objective_db = "sqlite:" .. vim.fn.getcwd() .. "/sql/runs.db",
-	sqlite3 = "sqlite:" .. vim.fn.getcwd() .. "/sqlite3.db",
+	sqlite3 = "sqlite:" .. vim.fn.getcwd() .. "/sessions.db",
 }
 
 -- Completions for SQL
