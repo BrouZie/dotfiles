@@ -252,9 +252,9 @@ return {
 			mapping = cmp.mapping.preset.insert({
 
 				["<C-e>"] = cmp.mapping.abort(), -- close completion window
-				["<C-d>"] = cmp.mapping(function()
-					cmp.close_docs()
-				end, { "i", "s" }),
+				-- ["<C-d>"] = cmp.mapping(function()
+				-- 	cmp.close_docs()
+				-- end, { "i", "s" }),
 
 				["<C-f>"] = cmp.mapping.scroll_docs(4),
 				["<C-b>"] = cmp.mapping.scroll_docs(-4),
