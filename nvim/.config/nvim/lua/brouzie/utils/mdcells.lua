@@ -36,21 +36,6 @@ local function current_block_open_row()
   return 0
 end
 
--- Returns the {open, close} row pair for the block the cursor is currently in,
--- or nil if cursor is not inside a fenced block.
-local function current_block_range()
-  local open = current_block_open_row()
-  if open == 0 then return nil end
-
-  local save = vim.api.nvim_win_get_cursor(0)
-  vim.api.nvim_win_set_cursor(0, { open, 0 })
-  local close = vim.fn.search(FENCE_CLOSE, "nW")
-  vim.api.nvim_win_set_cursor(0, save)
-
-  if close == 0 then return nil end
-  return { open = open, close = close }
-end
-
 -- Public: jump down to next code cell (first line inside the fence)
 function M.jump_down(opts)
   opts = opts or {}
@@ -122,40 +107,6 @@ function M.jump_up(opts)
   vim.api.nvim_win_set_cursor(0, save)
   if prev == 0 then info("No code blocks found in this file.") return end
   set_row(prev + 1)
-end
-
--------------------
--- Codecell running
--------------------
-
-function M.run_cell(lang)
-  lang = lang or "python"
-
-  local range = current_block_range()
-  if not range then
-    info("Not inside a code cell.")
-    return
-  end
-
-  local open_line = vim.api.nvim_buf_get_lines(0, range.open - 1, range.open, false)[1]
-  if not open_line:match("^```{?" .. lang .. "}?%s*$") then
-    info("Not inside a " .. lang .. " code cell.")
-    return
-  end
-
-  local first = range.open + 1
-  local last  = range.close - 1
-
-  if first > last then
-    info("Code cell is empty.")
-    return
-  end
-
-  -- Set visual marks directly so MoltenEvaluateVisual knows what to evaluate
-  vim.api.nvim_buf_set_mark(0, "<", first, 0, {})
-  vim.api.nvim_buf_set_mark(0, ">", last, 0, {})
-  vim.cmd("MoltenEvaluateVisual")
-  vim.cmd("normal! zz")
 end
 
 return M

@@ -3,17 +3,14 @@ vim.g.maplocalleader = "\\"
 
 local map = vim.keymap.set
 
-map("n", "<leader>ts", ":TodoTelescope<CR>")
 map("n", "<leader>GS", vim.cmd.Git)
-map("n", "<leader>h", ":Pick help<CR>")
-map("n", "<leader>f", ":Pick files<CR>")
+-- map("n", "<leader>h", ":Pick help<CR>")
+-- map("n", "<leader>f", ":Pick files<CR>")
 map("n", "<leader>GG", ":G ")
 map("n", "<leader>e", ":Oil<CR>")
 map("n", "<leader>w", ":update<CR>")
 map("n", "<leader>q", ":quit<CR>")
 map("n", "<leader>b", ":e #<CR>")
-map("n", "<leader>S", ":sf #<CR>")
-map("n", "<leader>V", ":vsplit #<CR>")
 map("t", "", "")
 map("t", "", "")
 map("n", "<C-d>", "<C-d>zz")
@@ -31,6 +28,8 @@ end, { expr = true, silent = true, desc = "Up (wrap-aware)" })
 -- Panes manipulation
 map("n", "<leader>v", ":vsplit<CR>")
 map("n", "<leader>s", "<C-w>s<CR>")
+map("n", "<leader>S", ":sf #<CR>")
+map("n", "<leader>V", ":vsplit #<CR>")
 map("n", "<leader>+", ":vertical resize +5<CR>")
 map("n", "<leader>-", ":vertical resize -5<CR>")
 map("n", "<leader>?", ":resize +5<CR>")
@@ -61,9 +60,6 @@ map("n", "<leader>yp", function()
 	print("File path copied to clipboard: " .. filePath)
 end, { desc = "Copy file path to clipboard" })
 
--- Toggle colorizer for buffer
-map("n", "<leader>c", ":ColorizerToggle<CR>")
-
 map(
 	"n",
 	"<leader>rp",
@@ -72,9 +68,9 @@ map(
 )
 
 -- Copilot
-map('i', '<C-F>', 'copilot#Accept("\\<CR>")', {
+map("i", "<C-F>", 'copilot#Accept("\\<CR>")', {
 	expr = true,
-	replace_keycodes = false
+	replace_keycodes = false,
 })
 
 -- Inlay hints
@@ -82,12 +78,19 @@ map("n", "<leader>H", function()
 	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end)
 
--- Toggle LSP diagnostics visibility
-local isLspDiagnosticsVisible = true
-vim.keymap.set("n", "<leader>lx", function()
-	isLspDiagnosticsVisible = not isLspDiagnosticsVisible
-	vim.diagnostic.config({
-		virtual_text = isLspDiagnosticsVisible,
-		underline = isLspDiagnosticsVisible,
-	})
-end, { desc = "Toggle LSP diagnostics" })
+-- Toggle colors
+map("n", "<leader>c", ":ColorizerToggle<CR>")
+
+-- Visual selection of markdown codeblock
+map("n", "<leader>o", function()
+	local start_line = vim.fn.search("^```\\S", "bnW")
+	local end_line = vim.fn.search("^```\\s*$", "nW")
+
+	if start_line > 0 and end_line > start_line + 1 then
+		vim.api.nvim_win_set_cursor(0, { start_line + 1, 0 })
+		vim.cmd("normal! V")
+		vim.api.nvim_win_set_cursor(0, { end_line - 1, 0 })
+	else
+		print("You are not within a codeblock!")
+	end
+end, { desc = "Visual selection inside md codeblock" })

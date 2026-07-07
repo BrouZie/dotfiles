@@ -1,51 +1,50 @@
 return {
 	"nvim-telescope/telescope.nvim",
-	cmd = "Telescope",
+	branch = "master", -- using master to fix issues with deprecated to definition warnings 
+    -- '0.1.x' for stable ver.
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		"nvim-tree/nvim-web-devicons",
 		"LinArcX/telescope-env.nvim", -- fzf over env variables
-		"andrew-george/telescope-themes" -- fzf themes
+		"andrew-george/telescope-themes",
 	},
-
-	keys = {
-		{ "<leader>g", "<cmd>Telescope live_grep<cr>", desc = "Telescope live grep" },
-		-- { "<leader>f", "<cmd>Telescope find_files<cr>", desc = "Telescope find files" },
-		{ "<leader>F", "<cmd>Telescope git_files<cr>", desc = "Telescope git files" },
-		{ "<leader>M", "<cmd>Telescope man_pages<cr>", desc = "Telescope man pages" },
-		{ "<leader>#", "<cmd>Telescope buffers<cr>", desc = "Telescope buffers" },
-		{ "<leader>r", "<cmd>Telescope oldfiles<cr>", desc = "Telescope recent files" },
-
-		-- word under cursor, no telescope require needed:
-		{
-			"<leader>pws",
-			function()
-				local word = vim.fn.expand("<cWORD>")
-				vim.cmd(("Telescope grep_string search=%q"):format(word))
-			end,
-			desc = "Grep WORD under cursor",
-		},
-		-- Additional telescope binds
-		{ "<leader>ths", "<cmd>Telescope themes<CR>", desc = "Colorscheme picker" },
-		{ "<leader>E", ":Telescope env<CR>", desc = "Environment variables" },
-	},
-
 	config = function()
 		local telescope = require("telescope")
+		local actions = require("telescope.actions")
+		local builtin = require("telescope.builtin")
+
+		telescope.load_extension("fzf")
+		telescope.load_extension("themes")
 
 		telescope.setup({
 			defaults = {
-				sorting_strategy = "ascending",
-				path_displays = { "smart" },
-				preview = { treesitter = false },
-				layout_config = {
-					prompt_position = "top"
+				path_display = { "smart" },
+			},
+			extensions = {
+				themes = {
+					enable_previewer = true,
+					enable_live_preview = true,
+					persist = {
+						enabled = true,
+						path = vim.fn.stdpath("config") .. "/lua/colorscheme.lua",
+					},
 				},
 			},
 		})
 
-		telescope.load_extension("fzf")
-		pcall(telescope.load_extension, "env")
-	end,
+		-- Keymaps
+		vim.keymap.set("n", "<leader>#", "<cmd>Telescope buffers<cr>", { desc = "Telescope buffers" })
+		vim.keymap.set("n", "<leader>E", ":Telescope env<CR>", { desc = "Environment variables" })
+		vim.keymap.set("n", "<leader>cc", "<cmd>Telescope git_bcommits<cr>", { desc = "Telescope recent commits" })
+		vim.keymap.set("n", "<leader>M", "<cmd>Telescope man_pages<CR>", { desc = "Telescope man pages" })
+		vim.keymap.set("n", "<leader>df", "<cmd>Telescope diagnostics<CR>", { desc = "Telescope workspace diagnostics" })
+		vim.keymap.set("n", "<leader>pr", "<cmd>Telescope oldfiles<CR>", { desc = "Fuzzy find recent files" })
+		vim.keymap.set("n", "<leader>pWs", function()
+			local word = vim.fn.expand("<cWORD>")
+			builtin.grep_string({ search = word })
+		end, { desc = "Find Connected Words under cursor" })
+
+		vim.keymap.set("n", "<leader>ths", "<cmd>Telescope themes<CR>", { noremap = true, silent = true, desc = "Theme Switcher" })
+    end,
 }

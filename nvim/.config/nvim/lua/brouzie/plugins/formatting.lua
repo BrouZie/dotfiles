@@ -27,28 +27,40 @@ return {
 					args = {
 						"--assume-filename",
 						"$FILENAME",
-						"--style={BasedOnStyle: WebKit, BreakBeforeBraces: Allman, IndentWidth: 4, UseTab: Never, ColumnLimit: 100}", -- Force open-braces: "BreakBeforeBraces: Allman"
+						"--style={"
+						.. "BasedOnStyle: Microsoft, "
+						.. "IndentWidth: 4, "
+						.. "IndentCaseLabels: true, "
+						.. "UseTab: Never, "
+						.. "ColumnLimit: 100, "
+						.. "PointerAlignment: Left, "
+						.. "AlignConsecutiveAssignments: {Enabled: true, AcrossEmptyLines: false, AcrossComments: false, AlignCompound: true}, "
+						.. "AlignConsecutiveShortCaseStatements: {Enabled: true, AcrossEmptyLines: false, AcrossComments: false, AlignCaseColons: false}, "
+						.. "AllowShortCaseLabelsOnASingleLine: true, "
+						.. "Cpp11BracedListStyle: false, "
+						.. "SpaceBeforeCpp11BracedList: true, "
+						.. "}",
+						-- "--style={BasedOnStyle: WebKit, BreakBeforeBraces: Allman, IndentWidth: 4, UseTab: Never, ColumnLimit: 100}",
 					},
 				},
 			},
 			formatters_by_ft = {
-				lua = { "stylua" },
-				-- python = { "ruff_format" },
-				javascript = { "prettier" },
-				typescript = { "prettier" },
-				javascriptreact = { "prettier" },
-				typescriptreact = { "prettier" },
-				svelte = { "prettier" },
-				css = { "prettier" },
-				html = { "prettier" },
-				json = { "prettier" },
-				yaml = { "prettier" },
-				graphql = { "prettier" },
-				liquid = { "prettier" },
-				markdown = { "prettier", "markdown-toc" },
+                javascript = { "biome-check" },
+                typescript = { "biome-check" },
+                javascriptreact = { "biome-check" },
+                typescriptreact = { "biome-check" },
+                css = { "biome-check" },
+                html = { "prettier" },
+                svelte = { "prettier" },
+                json = { "biome-check" },
+                yaml = { "prettier" },
+                graphql = { "prettier" },
+                liquid = { "prettier" },
+                lua = { "stylua" },
+                markdown = { "mdformat","markdownlint-cli2","markdown-toc" },
 				cpp = { "clang-format" },
-				c = { "clang-format" }
-				-- ["markdown.mdx"] = { "prettier", "markdownlint-cli2", "markdown-toc" },
+				c = { "clang-format" },
+                -- python = { "black" },
 			},
 			-- format_on_save = {
 			-- 	lsp_fallback = true,

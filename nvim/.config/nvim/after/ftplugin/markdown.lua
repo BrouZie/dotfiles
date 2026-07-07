@@ -3,6 +3,7 @@ local set = vim.opt_local
 -- Set :make to compile using pandoc
 vim.bo.makeprg = "pandoc % -o %<.pdf --pdf-engine=tectonic"
 vim.bo.errorformat = "%f:%l:%c: %m,%f:%l: %m"
+vim.opt.wrap = true
 
 -- Additional conversion commands
 vim.api.nvim_create_user_command("MdToNotebook", function()
@@ -333,12 +334,6 @@ local cells = require("brouzie.utils.mdcells")
 
 vim.keymap.set("n", "<space>k", cells.jump_up,   { desc = "Jump to previous code cell" })
 vim.keymap.set("n", "<space>j", cells.jump_down, { desc = "Jump to next code cell" })
-vim.keymap.set("n", "<space>x", function() require("brouzie.utils.mdcells").run_cell("python") end)
-vim.keymap.set("n", "<space>X", ":MoltenReevaluateCell<CR>", { desc = "Re-run current cell" })
-vim.keymap.set("n", "<space>dd", ":MoltenDelete<CR>",        { desc = "Delete cell output" })
-vim.keymap.set("n", "<space>mi", ":MoltenInit<CR>",          { desc = "Init Molten kernel" })
-vim.keymap.set("n", "<space>o",  ":noautocmd MoltenEnterOutput<CR>", { desc = "Enter output window" })
-vim.keymap.set("n", "<space>O",  ":MoltenHideOutput<CR>",    { desc = "Hide output" })
 
 -- visual mode keymaps (use commands to preserve selection)
 vim.keymap.set("v", "tn", ":<C-u>ToggleNumberVisual<CR>", {

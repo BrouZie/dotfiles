@@ -42,7 +42,7 @@ local pop_todo = function()
 	if not vim.api.nvim_win_is_valid(state.floating.win) then
 		state.floating = create_floating_window({ buf = state.floating.buf })
 		if vim.bo[state.floating.buf].buftype ~= "" then
-			vim.cmd.edit("~/Documents/2ndBrain/daily/TODO.md")
+			vim.cmd.edit("~/Documents/2ndBrain/TODO/TODO.md")
 		end
 	else
 		vim.api.nvim_win_hide(state.floating.win)
@@ -51,4 +51,4 @@ end
 
 vim.api.nvim_create_user_command("Todopop", pop_todo, {})
 
-vim.keymap.set("n", "<space>td", pop_todo)
+vim.keymap.set("n", "<space>tp", pop_todo)

@@ -36,6 +36,23 @@ return {
 		end,
 	},
 	{
+	  "oskarnurm/koda.nvim",
+	  lazy = false, -- make sure we load this during startup if it is your main colorscheme
+	  priority = 1000, -- make sure to load this before all the other start plugins
+	  config = function()
+		require("koda").setup({ transparent = true })
+		vim.cmd("colorscheme koda")
+	  end,
+	},
+	{
+		"bjarneo/aether.nvim",
+		branch = "v3",
+		priority = 1000,
+		config = function()
+			require("aether").setup({ transparent = true })
+		end,
+	},
+	{
 		"vague-theme/vague.nvim",
 		lazy = false, -- make sure we load this during startup if it is your main colorscheme
 		priority = 1000, -- make sure to load this before all the other plugins
@@ -49,7 +66,7 @@ return {
 			})
 		end,
 	},
-	{ "catppuccin/nvim", name = "catppuccin", priority = 1000, opts = {transparent_background = true} },
+	{ "catppuccin/nvim", name = "catppuccin", priority = 1000, opts = { transparent_background = true } },
 	{
 		"ellisonleao/gruvbox.nvim",
 		-- priority = 1000 ,
@@ -72,7 +89,7 @@ return {
 				invert_tabline = false,
 				invert_intend_guides = false,
 				inverse = true, -- invert background for search, diffs, statuslines and errors
-				contrast = "", -- can be "hard", "soft" or empty string
+				contrast = "hard", -- can be "hard", "soft" or empty string
 				palette_overrides = {},
 				overrides = {
 					Pmenu = { bg = "" }, -- Completion menu background
@@ -83,7 +100,7 @@ return {
 		end,
 	},
 	{
-		"savq/melange-nvim"
+		"savq/melange-nvim",
 	},
 	{
 		"rebelot/kanagawa.nvim",
@@ -150,12 +167,12 @@ return {
 		"navarasu/onedark.nvim", -- Onedark
 		priority = 1000, -- make sure to load this before all the other start plugins
 		config = function()
-			require('onedark').setup {
-				style = 'darker',
-				transparent = true
-			}
-			require('onedark').load()
-		end
+			require("onedark").setup({
+				style = "darker",
+				transparent = true,
+			})
+			require("onedark").load()
+		end,
 	},
 	{
 		"folke/tokyonight.nvim",
@@ -203,18 +220,18 @@ return {
 			})
 			-- vim.cmd("colorscheme tokyonight")
 			-- vim.api.nvim_create_autocmd("FileType", {
-				--     pattern = { "markdown" },
-				--     callback = function()
-					--         -- Ensure the theme switch only happens once for a buffer
-					--         local buffer = vim.api.nvim_get_current_buf()
-					--         if not vim.b[buffer].tokyonight_applied then
-					--             if vim.fn.expand("%:t") ~= "" and vim.api.nvim_buf_get_option(0, "buftype") ~= "nofile" then
-					--                 vim.cmd("colorscheme tokyonight")
-					--             end
-					--             vim.b[buffer].tokyonight_applied = true
-					--         end
-					--     end,
-					-- })
-				end,
-			},
-		}
+			--     pattern = { "markdown" },
+			--     callback = function()
+			--         -- Ensure the theme switch only happens once for a buffer
+			--         local buffer = vim.api.nvim_get_current_buf()
+			--         if not vim.b[buffer].tokyonight_applied then
+			--             if vim.fn.expand("%:t") ~= "" and vim.api.nvim_buf_get_option(0, "buftype") ~= "nofile" then
+			--                 vim.cmd("colorscheme tokyonight")
+			--             end
+			--             vim.b[buffer].tokyonight_applied = true
+			--         end
+			--     end,
+			-- })
+		end,
+	},
+}

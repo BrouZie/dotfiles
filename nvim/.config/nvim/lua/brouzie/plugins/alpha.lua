@@ -37,13 +37,13 @@ return {
 
     -- 4) Buttons
     dashboard.section.buttons.val = {
-			dashboard.button("f", "󰈞  Find file",    ":Telescope find_files<CR>"),
-			dashboard.button("G", "  Git Status",   function()
-				local alpha_buf = vim.api.nvim_get_current_buf()
-				vim.cmd.Git()
-				vim.api.nvim_buf_delete(alpha_buf, { force = true })
-			end),
-			dashboard.button("g", "󰈬  Grep word",    ":Telescope live_grep<CR>"),
+  	dashboard.button("f", "󰈞  Find file",    ":Telescope find_files<CR>"),
+  	dashboard.button("G", "  Git Status",   function()
+  		local alpha_buf = vim.api.nvim_get_current_buf()
+  		vim.cmd.Git()
+  		vim.api.nvim_buf_delete(alpha_buf, { force = true })
+  	end),
+  	dashboard.button("g", "󰈬  Grep word",    ":Telescope live_grep<CR>"),
       dashboard.button("e", "  Explore",      ":Oil<CR>"),
       dashboard.button("r", "󰊄  Recent files", ":Telescope oldfiles<CR>"),
       dashboard.button("q", "󰈆  Quit NVIM",    ":qa<CR>"),
@@ -52,4 +52,3 @@ return {
     alpha.setup(dashboard.opts)
   end,
 }
-

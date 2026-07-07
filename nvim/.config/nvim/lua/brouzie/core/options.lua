@@ -3,7 +3,7 @@ vim.opt.winborder = "rounded"
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.cursorcolumn = false
-vim.opt.guicursor = ""
+vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:block,r-cr:hor20,o:hor50,a:blinkon500-blinkoff500-blinkwait500"
 vim.opt.signcolumn = "yes"
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
@@ -17,8 +17,9 @@ vim.opt.termguicolors = true
 vim.opt.clipboard:append("unnamedplus")
 vim.opt.exrc = true
 vim.opt.secure = true
-vim.opt.scrolloff = 5 -- keep 10 lines above/below cursor
-vim.opt.sidescrolloff = 5 -- keep 10 lines to left/right of cursor
+vim.opt.scrolloff = 2 -- keep 2 lines above/below cursor
+vim.opt.sidescrolloff = 5 -- keep 2 lines to left/right of cursor
+vim.opt.wrap = false
 
 -- Copilot (uncomment and follow docs to enable Copilot)
 vim.g.copilot_no_tab_map = true
@@ -52,5 +53,14 @@ vim.api.nvim_create_autocmd("FileType", {
 				}),
 			})
 		end
+	end,
+})
+
+-- Highlighting when yayænkin
+vim.api.nvim_create_autocmd("TextYankPost", {
+	desc = "Highlight when yanking (copying) text",
+	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+	callback = function()
+		vim.hl.on_yank()
 	end,
 })
