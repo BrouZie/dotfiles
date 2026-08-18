@@ -19,12 +19,13 @@ return {
 
             prompt = '> ',       -- Input prompt symbol
             layout = {
-                width = 0.75,          -- Window width as fraction of screen
-                height = 0.85,         -- Window height as fraction of screen
-                prompt_position = 'bottom', -- or 'top'
+                width = 0.90,          -- Window width as fraction of screen
+                height = 0.90,         -- Window height as fraction of screen
+                prompt_position = 'top', -- or 'top'
                 preview_position = 'right', -- or 'left', 'right', 'top', 'bottom'
                 preview_size = 0.5,
                 flex = false,
+                min_list_height = 15,
             },
             preview = {
                 enabled = true,
@@ -53,6 +54,7 @@ return {
                 move_down = { '<Down>', '<C-n>', '<C-j>'},
                 preview_scroll_up = '<C-u>',
                 preview_scroll_down = '<C-d>',
+                toggle_preview = '<C-o>',
             },
             git = {
                 status_text_color = true, -- Enable git status colors on filename text
@@ -90,12 +92,50 @@ return {
                 show_scores = false,  -- Toggle with F2 or :FFFDebug
             },
         })
+
+        -- fff.nvim has no preview toggle; wire one up live via relayout().
+        local picker_ui = require('fff.picker_ui.picker_ui')
+        local state = require('fff.picker_ui.picker_ui_state').state
+
+        picker_ui.toggle_preview = function()
+            if not state.config or not state.config.preview then return end
+            state.config.preview.enabled = not state.config.preview.enabled
+            local status = state.config.preview.enabled and 'enabled' or 'disabled'
+            vim.notify('FFF preview ' .. status, vim.log.levels.INFO)
+            picker_ui.relayout()
+        end
+
+        -- Register the toggle keymap: setup_keymaps has no slot for it.
+        local ui_creator = require('fff.picker_ui.ui_creator')
+        local original_setup_keymaps = ui_creator.setup_keymaps
+        ui_creator.setup_keymaps = function()
+            original_setup_keymaps()
+            local toggle = state.config and state.config.keymaps and state.config.keymaps.toggle_preview
+            if not toggle then return end
+            local function map(buf, modes)
+                vim.keymap.set(modes, toggle, picker_ui.toggle_preview, { buffer = buf, noremap = true, silent = true })
+            end
+            map(state.input_buf, { 'i', 'n' })
+            map(state.list_buf, 'n')
+        end
+
+        -- Auto-hide preview on narrow terminals. fff only ships min_list_height,
+        -- so patch layout.compute to honor min_list_width as well.
+        local layout = require('fff.layout')
+        local original_compute = layout.compute
+        layout.compute = function(config, preview_user_enabled)
+            local min_width = config.layout and config.layout.min_list_width
+            if min_width and vim.o.columns <= min_width then
+                preview_user_enabled = false
+            end
+            return original_compute(config, preview_user_enabled)
+        end
     end,
     keys = {
         {
             "<leader>f",
             function()
-                require("fff").find_files()
+                require("fff").find_files({ preview = { enabled = false } })
             end,
             desc = "Open file picker",
         },
@@ -103,7 +143,7 @@ return {
             "<leader>g",
             function() require('fff').live_grep({
                 grep = {
-                  modes = { 'fuzzy', 'plain' }
+                  modes = { 'plain', 'fuzzy' }
                 }
             }) end,
             desc = 'Live fffuzy grep word',

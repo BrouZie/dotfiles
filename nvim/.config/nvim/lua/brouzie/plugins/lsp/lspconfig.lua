@@ -100,6 +100,20 @@ return {
             vim.diagnostic.config({ virtual_text = not current })
         end, { desc = "Toggle LSP virtual text" })
 
+		vim.lsp.log.set_level("warn")
+
+		-- Single notification when first LSP attaches
+		vim.api.nvim_create_autocmd("LspAttach", {
+			group = vim.api.nvim_create_augroup("LspReadyNotify", { clear = true }),
+			once = true,
+			callback = function(ev)
+				local client = vim.lsp.get_client_by_id(ev.data.client_id)
+				if client then
+					vim.notify(client.name .. " attached")
+				end
+			end,
+		})
+
         -- NOTE: Setup servers
         local capabilities = vim.lsp.protocol.make_client_capabilities()
         -- blink cmp
@@ -136,9 +150,9 @@ return {
 		vim.lsp.config("basedpyright", {
 			capabilities = capabilities,
 			settings = {
-				basedpyright = {
+				python = {
 					analysis = {
-						typeCheckingMode = "basic", -- or "strict"
+						typeCheckingMode = "basic",
 						autoImportCompletions = true,
 					},
 				},

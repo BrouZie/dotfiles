@@ -110,6 +110,9 @@ return {
                     },
                 }
             },
+            todo = {
+                enabled = true,
+            },
             image = {
                 enabled = function()
                     return vim.bo.filetype == "markdown"
@@ -150,7 +153,7 @@ return {
         keys = {
             { "<leader>lg", function() require("snacks").lazygit() end, desc = "Lazygit" },
             { "<leader>GL", function() require("snacks").lazygit.log() end, desc = "Lazygit Logs" },
-            { "<leader>rN", function() require("snacks").rename.rename_file() end, desc = "Fast Rename Current File" },
+            { "<leader>rn", function() require("snacks").rename.rename_file() end, desc = "Fast Rename Current File" },
             { "<leader>dB", function() require("snacks").bufdelete() end, desc = "Delete or Close Buffer  (Confirm)" },
 
             -- Snacks Picker
@@ -161,7 +164,6 @@ return {
             { "<leader>GB", function() require("snacks").picker.git_branches({ layout = "select" }) end, desc = "Pick and Switch Git Branches" },
 
             -- Other Utils
-            { "<leader>th" , function() require("snacks").picker.colorschemes({ layout = "ivy" }) end, desc = "Pick Color Schemes"},
             { "<leader>h", function() require("snacks").picker.help() end, desc = "Help Pages" },
         }
     },
@@ -169,10 +171,10 @@ return {
     {
         "folke/todo-comments.nvim",
         event = { "BufReadPre", "BufNewFile" },
-        optional = true,
+        opts = {},
         keys = {
-            { "<leader>ts", function() require("snacks").picker.todo_comments() end, desc = "All" },
-            { "<leader>TS", function() require("snacks").picker.todo_comments({ keywords = { "TODO","FORGETNOT","FIXME" } }) end, desc = "mains" },
+            { "<leader>ts", function() require("snacks").picker.todo_comments({ layout = "ivy" }) end, desc = "All" },
+            { "<leader>TS", function() require("snacks").picker.todo_comments({ layout = "ivy", keywords = { "TODO","FORGETNOT","FIXME" } }) end, desc = "mains" },
         },
     }
 }

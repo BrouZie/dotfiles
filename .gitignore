@@ -12,3 +12,4 @@ rofi/.config/rofi/colors.rasi
 
 # Neovim current colorscheme
 nvim/.config/nvim/lua/current-theme.lua
+nvim/.config/nvim/lazy-lock.json
