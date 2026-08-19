@@ -14,9 +14,6 @@ return {
 		local actions = require("telescope.actions")
 		local builtin = require("telescope.builtin")
 
-		telescope.load_extension("fzf")
-		telescope.load_extension("themes")
-
 		telescope.setup({
 			defaults = {
 				path_display = { "smart" },
@@ -25,13 +22,23 @@ return {
 				themes = {
 					enable_previewer = true,
 					enable_live_preview = true,
+					-- Session-only theme switching: pick a colorscheme to try it
+					-- now, but never write it to disk. Persisting would fight the
+					-- Omarchy theme (brouzie/omarchy), which is what a new session
+					-- restores. The plugin's default persist target is
+					-- lua/current-theme.lua and it overwrites it outright.
 					persist = {
-						enabled = true,
-						path = vim.fn.stdpath("config") .. "/lua/colorscheme.lua",
+						enabled = false,
 					},
 				},
 			},
 		})
+
+		-- Extensions are configured through telescope.setup's `extensions` table,
+		-- and telescope hands that config to an extension when it is loaded -- so
+		-- these must come after setup or the config above is silently ignored.
+		telescope.load_extension("fzf")
+		telescope.load_extension("themes")
 
 		-- Keymaps
 		vim.keymap.set("n", "<leader>#", "<cmd>Telescope buffers<cr>", { desc = "Telescope buffers" })

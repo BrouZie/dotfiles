@@ -14,6 +14,6 @@ require("vim._core.ui2").enable({
 require("brouzie.core.options")
 require("brouzie.core.keymaps")
 require("brouzie.lazy")
-require("current-theme")
+require("brouzie.theme")
 require("brouzie.terminalpop")
 require("brouzie.todopop")

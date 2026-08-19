@@ -45,11 +45,16 @@ return {
 	  end,
 	},
 	{
+		-- Omarchy renders most of its themes through aether, handing the theme's
+		-- palette over as opts in the neovim.lua spec it generates. Accept opts
+		-- here so those colors survive instead of being overwritten, and use the
+		-- same `name` Omarchy's spec does so both resolve to lazy/aether.
 		"bjarneo/aether.nvim",
 		branch = "v3",
+		name = "aether",
 		priority = 1000,
-		config = function()
-			require("aether").setup({ transparent = true })
+		config = function(_, opts)
+			require("aether").setup(vim.tbl_deep_extend("force", { transparent = true }, opts or {}))
 		end,
 	},
 	{

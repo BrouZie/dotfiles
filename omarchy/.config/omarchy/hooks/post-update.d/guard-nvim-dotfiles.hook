@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# Warn when an Omarchy update disturbs the Neovim config.
+#
+# ~/.config/nvim is a symlink into ~/dotfiles, so nothing in Omarchy resets it
+# on a normal update -- there is no `omarchy refresh nvim`, and omarchy-nvim-setup
+# no-ops once the directory exists. Migrations are the exception: they run on
+# every `omarchy update` and do write into ~/.config/nvim when they find it
+# (1781587663.sh installed lua/config/remote_clipboard.lua and prepended a
+# require to lua/config/options.lua). Through the symlink that lands inside the
+# dotfiles repo, where git sees it.
+#
+# This only reports. Review and decide what to keep vs. not
+
+DOTFILES="$HOME/dotfiles"
+NVIM_CONFIG="$HOME/.config/nvim"
+EXPECTED="$DOTFILES/nvim/.config/nvim"
+
+notify() {
+  if command -v omarchy-notification-send >/dev/null 2>&1; then
+    omarchy-notification-send -u critical "$@"
+  else
+    printf '%s: %s\n' "$1" "$2" >&2
+  fi
+}
+
+# The config was replaced outright -- omarchy-nvim-refresh or `omarchy reinstall`
+# move the old path aside and copy the packaged tree in.
+if [[ ! -L $NVIM_CONFIG ]]; then
+  notify "Neovim config detached from dotfiles" \
+    "~/.config/nvim is no longer a symlink. Look for a ~/.config/nvim.backup.* and restore with: ln -sfn $EXPECTED $NVIM_CONFIG"
+  exit 0
+fi
+
+if [[ $(readlink -f "$NVIM_CONFIG") != "$(readlink -f "$EXPECTED")" ]]; then
+  notify "Neovim config points somewhere else" \
+    "~/.config/nvim -> $(readlink "$NVIM_CONFIG"). Restore with: ln -sfn $EXPECTED $NVIM_CONFIG"
+  exit 0
+fi
+
+git -C "$DOTFILES" rev-parse --git-dir >/dev/null 2>&1 || exit 0
+
+changes=$(git -C "$DOTFILES" status --porcelain -- nvim 2>/dev/null)
+[[ -n $changes ]] || exit 0
+
+count=$(printf '%s\n' "$changes" | wc -l)
+notify "Omarchy update touched your Neovim config" \
+  "$count file(s) changed in ~/dotfiles/nvim. Review with: git -C ~/dotfiles status -- nvim"
