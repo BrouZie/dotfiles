@@ -3,7 +3,7 @@ vim.g.maplocalleader = "\\"
 
 local map = vim.keymap.set
 
-map("n", "<leader>GS", vim.cmd.Git)
+map("n", "<leader>GS", "<cmd>vert Git<CR>")
 map("n", "<leader>GG", ":G ")
 map("n", "<leader>e", ":Oil<CR>")
 map("n", "<leader>w", ":update<CR>")
@@ -11,8 +11,8 @@ map("n", "<leader>q", ":quit<CR>")
 map("n", "<leader>b", ":e #<CR>")
 map("t", "", "")
 map("t", "", "")
-map("n", "<C-d>", "<C-d>zz")
-map("n", "<C-u>", "<C-u>zz")
+-- map("n", "<C-d>", "<C-d>zz")
+-- map("n", "<C-u>", "<C-u>zz")
 
 -- Better navigation in text-type documents
 map("n", "j", function()
@@ -34,7 +34,7 @@ map("n", "<leader>?", ":resize +5<CR>")
 map("n", "<leader>_", ":resize -5<CR>")
 
 -- cd into working directory
-map("n", "<leader>cd", "<cmd>cd %:p:h|pwd<CR>")
+map("n", "<leader>dir", "<cmd>cd %:p:h|pwd<CR>")
 
 -- Move between panes
 map("n", "<c-k>", ":wincmd k<CR>")
@@ -77,7 +77,7 @@ map("n", "<leader>H", function()
 end)
 
 -- Toggle colors
-map("n", "<leader>c", ":ColorizerToggle<CR>")
+-- map("n", "<leader>c", ":ColorizerToggle<CR>")
 
 -- Visual selection of markdown codeblock
 map("n", "<leader>o", function()

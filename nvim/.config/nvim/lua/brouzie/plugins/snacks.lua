@@ -174,7 +174,7 @@ return {
         opts = {},
         keys = {
             { "<leader>ts", function() require("snacks").picker.todo_comments({ layout = "ivy" }) end, desc = "All" },
-            { "<leader>TS", function() require("snacks").picker.todo_comments({ layout = "ivy", keywords = { "TODO","FORGETNOT","FIXME" } }) end, desc = "mains" },
+            { "<leader>TS", function() require("snacks").picker.todo_comments({ layout = "ivy", keywords = { "TODO","FORGETNOT","FIXME","NOTE" } }) end, desc = "mains" },
         },
     }
 }

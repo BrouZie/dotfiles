@@ -20,6 +20,7 @@ vim.opt.secure = true
 vim.opt.scrolloff = 2 -- keep 2 lines above/below cursor
 vim.opt.sidescrolloff = 5 -- keep 2 lines to left/right of cursor
 vim.opt.wrap = false
+vim.opt.cursorline = true
 
 -- Copilot (uncomment and follow docs to enable Copilot)
 vim.g.copilot_no_tab_map = true

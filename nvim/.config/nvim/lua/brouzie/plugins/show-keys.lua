@@ -37,7 +37,7 @@ return {
             },
         },
     },
-    vim.keymap.set("n", "<leader>ks", "<cmd>ShowkeysToggle<CR>", {
+    vim.keymap.set("n", "<leader>Ks", "<cmd>ShowkeysToggle<CR>", {
         desc = "Toggle Showkeys",
     })
 }

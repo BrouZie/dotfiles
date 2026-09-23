@@ -1,6 +1,6 @@
 vim.keymap.set("n", "<leader>x", function()
 	vim.cmd("update")
-	vim.cmd("belowright split | resize 12")
+	vim.cmd("vert split")
 	local file = vim.fn.shellescape(vim.fn.expand("%"))
 	vim.cmd(
 		"terminal g++ -std=c++23 -g -O0 -Wall -Weffc++ -Wextra -Wconversion -Wsign-conversion -Wshadow -o run_cpp "
