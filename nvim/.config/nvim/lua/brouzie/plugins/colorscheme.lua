@@ -47,9 +47,10 @@ return {
 	{
 		"bjarneo/aether.nvim",
 		branch = "v3",
+		name = "aether",
 		priority = 1000,
-		config = function()
-			require("aether").setup({ transparent = true })
+		config = function(_, opts)
+			require("aether").setup(vim.tbl_deep_extend("force", { transparent = true }, opts or {}))
 		end,
 	},
 	{

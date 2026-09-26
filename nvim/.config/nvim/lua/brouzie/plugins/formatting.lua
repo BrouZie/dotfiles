@@ -32,11 +32,12 @@ return {
 						.. "IndentWidth: 4, "
 						.. "IndentCaseLabels: true, "
 						.. "UseTab: Never, "
-						.. "ColumnLimit: 100, "
+						-- .. "ColumnLimit: 100, "
 						.. "PointerAlignment: Left, "
 						.. "AlignConsecutiveAssignments: {Enabled: true, AcrossEmptyLines: false, AcrossComments: false, AlignCompound: true}, "
 						.. "AlignConsecutiveShortCaseStatements: {Enabled: true, AcrossEmptyLines: false, AcrossComments: false, AlignCaseColons: false}, "
 						.. "AllowShortCaseLabelsOnASingleLine: true, "
+						.. "AllowShortFunctionsOnASingleLine: true, "
 						.. "Cpp11BracedListStyle: false, "
 						.. "SpaceBeforeCpp11BracedList: true, "
 						.. "}",

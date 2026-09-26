@@ -21,10 +21,10 @@ return {
 				end,
 			})
 
-			-- Keymap to manually add C/C++ when needed
-			vim.keymap.set("n", "<leader>cp", function()
-				require("otter").activate({ "c", "cpp" }, true, true)
-			end, { desc = "Otter: activate C/C++" })
+			-- -- Keymap to manually add C/C++ when needed
+			-- vim.keymap.set("n", "<leader>cp", function()
+			-- 	require("otter").activate({ "c", "cpp" }, true, true)
+			-- end, { desc = "Otter: activate C/C++" })
 		end,
 	},
 }

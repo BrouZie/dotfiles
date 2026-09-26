@@ -36,7 +36,7 @@ return {
 		-- Keymaps
 		vim.keymap.set("n", "<leader>#", "<cmd>Telescope buffers<cr>", { desc = "Telescope buffers" })
 		vim.keymap.set("n", "<leader>E", ":Telescope env<CR>", { desc = "Environment variables" })
-		vim.keymap.set("n", "<leader>cc", "<cmd>Telescope git_bcommits<cr>", { desc = "Telescope recent commits" })
+		vim.keymap.set("n", "<leader>GC", "<cmd>Telescope git_bcommits<cr>", { desc = "Telescope recent commits" })
 		vim.keymap.set("n", "<leader>M", "<cmd>Telescope man_pages<CR>", { desc = "Telescope man pages" })
 		vim.keymap.set("n", "<leader>df", "<cmd>Telescope diagnostics<CR>", { desc = "Telescope workspace diagnostics" })
 		vim.keymap.set("n", "<leader>pr", "<cmd>Telescope oldfiles<CR>", { desc = "Fuzzy find recent files" })
