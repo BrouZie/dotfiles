@@ -1,5 +1,6 @@
 return {
     "nvim-lua/plenary.nvim", --  multiple plugins need
+    "nvim-tree/nvim-web-devicons", -- file icons for fff, oil, render-markdown
     "christoomey/vim-tmux-navigator", -- tmux & split window nav
     -- fixes undefined globals
     {

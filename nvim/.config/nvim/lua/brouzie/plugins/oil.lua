@@ -11,7 +11,7 @@ return {
 		["g?"] = { "actions.show_help", mode = "n" },
 		["<CR>"] = "actions.select",
 		["q"] = "actions.close",
-		["<leader>cd"] = "actions.cd",
+		["<leader>."] = "actions.cd",
 		["<C-p>"] = "actions.preview",
 		["-"] = { "actions.parent", mode = "n" },
 		["_"] = { "actions.open_cwd", mode = "n" },

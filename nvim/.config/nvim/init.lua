@@ -14,6 +14,9 @@ require("vim._core.ui2").enable({
 require("brouzie.core.options")
 require("brouzie.core.keymaps")
 require("brouzie.lazy")
-require("current-theme")
+require("brouzie.transparency") -- Before the theme loads, so it applies to it
+require("brouzie.theme") -- Omarchy's theme if present, else 'lua/current-theme.lua'
 require("brouzie.terminalpop")
 require("brouzie.todopop")
+require("brouzie.ui-input")
+require("brouzie.worktree-switch")
