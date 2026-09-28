@@ -31,20 +31,9 @@ return {
 			-- :h compile-mode.use_circular_error_navigation
 			use_circular_error_navigation = true,
 		}
-		local run_file = {
-			python = "uv run %",
-			c = "cc -o %:r % && ./%:r",
-			cpp = "c++ -std=c++17 -o %:r % && ./%:r",
-		}
-		vim.keymap.set("n", "<leader>r", function()
-			local cmd = run_file[vim.bo.filetype]
-			if not cmd then return vim.notify("No run command for " .. vim.bo.filetype) end
-			vim.cmd("silent! wall")
-			vim.cmd("vert Compile " .. cmd)
-		end, { desc = "Run current file" })
-		vim.keymap.set("n", "<leader>C", "<cmd>silent! wall<cr><cmd>vert Compile<cr>")
-		vim.keymap.set("n", "<leader>c", "<cmd>silent! wall<cr><cmd>vert Recompile<cr>")
-		vim.keymap.set("n", "<leader>j", "<cmd>NextError<cr>")
-		vim.keymap.set("n", "<leader>k", "<cmd>PrevError<cr>")
+		vim.keymap.set("n", "<leader>C", "<cmd>silent! wall<cr><cmd>vert Compile<cr>", { desc = "Compile" })
+		vim.keymap.set("n", "<leader>c", "<cmd>silent! wall<cr><cmd>vert Recompile<cr>", { desc = "Recompile" })
+		vim.keymap.set("n", "<leader>j", "<cmd>NextError<cr>", { desc = "Next error" })
+		vim.keymap.set("n", "<leader>k", "<cmd>PrevError<cr>", { desc = "Previous error" })
 	end,
 }

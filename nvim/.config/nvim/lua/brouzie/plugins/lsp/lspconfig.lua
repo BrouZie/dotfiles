@@ -3,7 +3,6 @@ return {
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
 		"saghen/blink.cmp",
-		{ "antosha417/nvim-lsp-file-operations", config = true },
 	},
 	config = function()
 		-- LSP Keybinds
@@ -15,50 +14,45 @@ return {
 				-- Check `:help vim.lsp.*` for documentation on any of the below functions
 				local opts = { buffer = ev.buf, silent = true }
 
-				-- keymaps
+				-- keymaps: fuzzy pickers with preview (fzf-lua). A single result jumps directly.
+				local fzf = function(picker)
+					return function() require("fzf-lua")[picker]() end
+				end
+
 				opts.desc = "Show LSP references"
-				vim.keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
+				vim.keymap.set("n", "gR", fzf("lsp_references"), opts)
 
 				opts.desc = "Go to declaration"
-				vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts) -- go to declaration
+				vim.keymap.set("n", "gD", fzf("lsp_declarations"), opts)
 
 				opts.desc = "Show LSP definitions"
-				vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
+				vim.keymap.set("n", "gd", fzf("lsp_definitions"), opts)
 
 				opts.desc = "Show LSP implementations"
-				vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts) -- show lsp implementations
+				vim.keymap.set("n", "gi", fzf("lsp_implementations"), opts)
 
 				opts.desc = "Show LSP type definitions"
-				vim.keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts) -- show lsp type definitions
+				vim.keymap.set("n", "gt", fzf("lsp_typedefs"), opts)
 
-				opts.desc = "Show LSP project symbols"
-				vim.keymap.set("n", "<leader>ps", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", opts) -- show lsp type definitions
+				opts.desc = "Document symbols"
+				vim.keymap.set("n", "gO", fzf("lsp_document_symbols"), opts)
 
-				opts.desc = "Project: functions & methods"
-				vim.keymap.set("n", "<leader>pf", function()
-					require("telescope.builtin").lsp_dynamic_workspace_symbols({ symbols = { "function", "method" } })
-				end, opts)
+				opts.desc = "Workspace symbols (live)"
+				vim.keymap.set("n", "gW", fzf("lsp_live_workspace_symbols"), opts)
 
-				opts.desc = "Project: classes & interfaces"
-				vim.keymap.set("n", "<leader>pc", function()
-					require("telescope.builtin").lsp_dynamic_workspace_symbols({
-						symbols = { "class", "interface", "struct" },
-					})
-				end, opts)
-
+				-- Previews the change as a diff; in visual mode applies to selection
 				opts.desc = "See available code actions"
-				vim.keymap.set({ "n", "v" }, "<leader>CA", function()
-					vim.lsp.buf.code_action()
-				end, opts) -- see available code actions, in visual mode will apply to selection
+				vim.keymap.set({ "n", "v" }, "<leader>la", fzf("lsp_code_actions"), opts)
 
+				-- Prompt is a floating input at the cursor (see 'brouzie/ui-input.lua')
 				opts.desc = "Smart rename"
-				vim.keymap.set("n", "grn", vim.lsp.buf.rename, opts) -- smart rename
+				vim.keymap.set("n", "grn", vim.lsp.buf.rename, opts)
 
 				opts.desc = "Show buffer diagnostics"
-                vim.keymap.set("n", "<leader>D", function() require("snacks").picker.diagnostics_buffer() end, opts)
+				vim.keymap.set("n", "<leader>D", fzf("diagnostics_document"), opts)
 
-                opts.desc = "Show line diagnostics"
-                vim.keymap.set("n", "df", function() vim.diagnostic.open_float() end, opts)
+				opts.desc = "Show line diagnostics"
+				vim.keymap.set("n", "<leader>dl", function() vim.diagnostic.open_float() end, opts)
 
 				opts.desc = "Show documentation for what is under cursor"
 				vim.keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
@@ -163,61 +157,6 @@ return {
 			capabilities = capabilities,
 		})
 
-        -- emmet_language_server
-        vim.lsp.config("emmet_language_server", {
-            filetypes = {
-                "css",
-                "html",
-                "javascript",
-                "javascriptreact",
-                "less",
-                "typescriptreact",
-            },
-            init_options = {
-                includeLanguages = {},
-                excludeLanguages = {},
-                extensionsPath = {},
-                preferences = {},
-                showAbbreviationSuggestions = true,
-                showExpandedAbbreviation = "always",
-                showSuggestionsAsSnippets = false,
-                syntaxProfiles = {},
-                variables = {},
-            },
-        })
-
-        -- emmet_ls
-        vim.lsp.config("emmet_ls", {
-            filetypes = {
-                "html",
-                "typescriptreact",
-                "javascriptreact",
-                "css",
-                "sass",
-                "scss",
-                "less",
-                "svelte",
-            },
-        })
-
-        -- gopls
-        vim.lsp.config("gopls", {
-            settings = {
-                gopls = {
-                    analyses = {
-                        unusedparams = true,
-                    },
-                    staticcheck = true,
-                    gofumpt = true,
-                },
-            },
-        })
-
-		-- .xml support
-		vim.lsp.config("lemminx", {
-			capabilities = capabilities,
-		})
-
 		-- clangd or c/c++
 		vim.lsp.config("clangd", {
 			capabilities = capabilities,
@@ -229,7 +168,7 @@ return {
 						ParameterNames = true,
 						DeducedTypes = true,
 					},
-					fallbackFlags = { "-std=c++20" },
+					fallbackFlags = { "-std=c++17" },
 				},
 			},
 			cmd = {
@@ -251,36 +190,18 @@ return {
 			capabilities = capabilities,
 		})
 
-		-- slangd language server (shader language)
-		vim.lsp.config("slangd", {
-			capabilities = capabilities,
-		})
-
 		-- -- cmake language server
 		-- vim.lsp.config("cmake-language-server", {
 		-- 	capabilities = capabilities,
 		-- })
 
-		-- r language server
-		vim.lsp.config("r_ls", {
-			capabilities = capabilities,
-			cmd = { "R", "--slave", "-e", "languageserver::run()" },
-			filetypes = { "r", "rmd" },
-			root_markers = { ".git", "DESCRIPTION", ".Rproj" },
-		})
-
 		vim.lsp.enable({
 			"lua_ls",
 			"basedpyright",
 			"ruff",
-			"emmet_ls",
-			"emmet_language_server",
 			"clangd",
 			"bashls",
 			"marksman",
-			"lemminx",
-			"r_ls",
-			"slangd",
 		})
 	end,
 }

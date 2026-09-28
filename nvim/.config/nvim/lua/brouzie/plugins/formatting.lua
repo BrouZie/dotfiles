@@ -46,21 +46,12 @@ return {
 				},
 			},
 			formatters_by_ft = {
-                javascript = { "biome-check" },
-                typescript = { "biome-check" },
-                javascriptreact = { "biome-check" },
-                typescriptreact = { "biome-check" },
-                css = { "biome-check" },
-                html = { "prettier" },
-                svelte = { "prettier" },
-                json = { "biome-check" },
-                yaml = { "prettier" },
-                graphql = { "prettier" },
-                liquid = { "prettier" },
                 lua = { "stylua" },
                 markdown = { "mdformat","markdownlint-cli2","markdown-toc" },
 				cpp = { "clang-format" },
 				c = { "clang-format" },
+                sh = { "shfmt" },
+                bash = { "shfmt" },
                 -- python = { "black" },
 			},
 			-- format_on_save = {
@@ -71,16 +62,6 @@ return {
 		})
 
 		-- Configure individual formatters
-		conform.formatters.prettier = {
-			args = {
-				"--stdin-filepath",
-				"$FILENAME",
-				"--tab-width",
-				"4",
-				"--use-tabs",
-				"false",
-			},
-		}
 		conform.formatters.shfmt = {
 			prepend_args = { "-i", "4" },
 		}
@@ -91,6 +72,6 @@ return {
 				async = false,
 				timeout_ms = 1000,
 			})
-		end, { desc = " Prettier Format whole file or range (in visual mode) with" })
+		end, { desc = "Format whole file or range (in visual mode)" })
 	end,
 }

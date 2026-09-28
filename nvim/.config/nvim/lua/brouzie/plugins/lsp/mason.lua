@@ -31,28 +31,17 @@ return {
 		mason_tool_installer.setup({
 			ensure_installed = {
 				-- "tree-sitter-cli", -- NOTE: IMPORTANT FOR MAKING TREESITTER WORK!
-				"biome",
-				"prettier", -- prettier formatter
 				"stylua", -- lua formatter
-				"debugpy",
 				"clangd",
 				"lua_ls",
 				"bashls",
 				"basedpyright",
 				"ruff",
-				"html",
-				"cssls",
-				"tailwindcss",
-				"emmet_ls",
-				"emmet_language_server",
 				"marksman",
-				"lemminx",
 				"clang-format",
-				"codelldb",
 				"shellcheck",
-				"slangd",
+				"shfmt",
 				-- "cmake-language-server"
-				-- "r-languageserver" -- installed globally using r: install.packages("languageserver")
 			},
 		})
 	end,

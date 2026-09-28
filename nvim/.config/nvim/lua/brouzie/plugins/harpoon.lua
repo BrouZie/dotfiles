@@ -4,11 +4,9 @@ return {
 	branch = "harpoon2",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
-		"nvim-telescope/telescope.nvim",
 	},
 	config = function()
 		local harpoon = require("harpoon")
-		local conf = require("telescope.config").values
 
 		harpoon:setup({
 			global_settings = {
@@ -35,7 +33,8 @@ return {
 		vim.keymap.set("n", "<C-n>", function()
 			harpoon:list():select(3)
 		end)
-		vim.keymap.set("n", "<C-m>", function()
+		-- Not <C-m>: terminals send it as <CR>, which would break Enter everywhere
+		vim.keymap.set("n", "<C-s>", function()
 			harpoon:list():select(4)
 		end)
 

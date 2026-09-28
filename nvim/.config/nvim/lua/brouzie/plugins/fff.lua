@@ -140,7 +140,7 @@ return {
             desc = "Open file picker",
         },
         {
-            "<leader>g",
+            "<leader>/",
             function() require('fff').live_grep({
                 grep = {
                   modes = { 'plain', 'fuzzy' }

@@ -18,17 +18,17 @@ return {
     ts.setup()
 
     local parsers = {
-      "bash", "lua", "diff", "html", "luadoc", "query",
-      "markdown", "markdown_inline", "python", "go",
-      "vimdoc", "c", "cpp", "r", "sql",
+      "bash", "c", "cpp", "python",
+      "markdown", "markdown_inline", "html", -- html for comments/tags inside markdown
+      "lua", "luadoc", "vim", "vimdoc", "query", "diff",
     }
 
     ts.install(parsers)
 
     vim.api.nvim_create_autocmd("FileType", {
       pattern = {
-        "bash", "sh", "lua", "diff", "html", "markdown",
-        "python", "go", "c", "cpp", "r", "sql", "vim",
+        "bash", "sh", "c", "cpp", "python", "markdown",
+        "lua", "vim", "diff", "html",
       },
       callback = function()
         vim.treesitter.start()

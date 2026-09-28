@@ -191,8 +191,8 @@ function M.setup()
     return false
   end
 
-  require("brouzie.omarchy.transparency").setup()
-
+  -- Transparency for every theme (Omarchy's included) is handled by
+  -- brouzie/transparency.lua, loaded from init.lua before this runs.
   local applied = M.apply(false)
   watch()
   return applied
