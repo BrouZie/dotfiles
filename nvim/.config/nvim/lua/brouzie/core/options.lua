@@ -54,14 +54,11 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	callback = function() vim.hl.on_yank() end,
 })
 
--- Remember the last picked colorscheme across restarts. Not on Omarchy: there the
--- system theme is the source of truth (see 'brouzie/omarchy'), so picks are
--- session-only and Omarchy's own live theme switches aren't written here.
+-- Remember the last picked colorscheme across restarts
 vim.api.nvim_create_autocmd("ColorScheme", {
 	desc = "Save current colorscheme",
 	callback = function(ev)
 		if vim.v.vim_did_enter == 0 then return end
-		if require("brouzie.omarchy").available() then return end
 		local path = vim.fn.stdpath("config") .. "/lua/current-theme.lua"
 		vim.fn.writefile({ ("vim.cmd('colorscheme %s')"):format(ev.match) }, path)
 	end,

@@ -44,21 +44,6 @@ return {
 	  end,
 	},
 	{
-		-- Omarchy renders most of its themes through aether, handing the theme's
-		-- palette over as opts in the neovim.lua spec it generates. Accept opts
-		-- here so those colors survive instead of being overwritten, and use the
-		-- same `name` Omarchy's spec does so both resolve to lazy/aether.
-		"bjarneo/aether.nvim",
-		branch = "v3",
-		name = "aether",
-		priority = 1000,
-		config = function(_, opts)
-			require("aether").setup(vim.tbl_deep_extend("force", { transparent = true }, opts or {}))
-		end,
-	},
-	-- Omarchy's catppuccin themes (see 'plugins/omarchy-themes.lua')
-	{ "catppuccin/nvim", name = "catppuccin", priority = 1000, opts = { transparent_background = true } },
-	{
 		"vague-theme/vague.nvim",
 		lazy = false, -- make sure we load this during startup if it is your main colorscheme
 		priority = 1000, -- make sure to load this before all the other plugins
@@ -93,7 +78,7 @@ return {
 				invert_signs = false,
 				invert_tabline = false,
 				invert_intend_guides = false,
-				inverse = false, -- invert background for search, diffs, statuslines and errors
+				inverse = true, -- invert background for search, diffs, statuslines and errors
 				contrast = "hard", -- can be "hard", "soft" or empty string
 				palette_overrides = {},
 				overrides = {

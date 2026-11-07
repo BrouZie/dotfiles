@@ -31,8 +31,10 @@ return {
 			-- :h compile-mode.use_circular_error_navigation
 			use_circular_error_navigation = true,
 		}
-		vim.keymap.set("n", "<leader>C", "<cmd>silent! wall<cr><cmd>vert Compile<cr>", { desc = "Compile" })
-		vim.keymap.set("n", "<leader>c", "<cmd>silent! wall<cr><cmd>vert Recompile<cr>", { desc = "Recompile" })
+		-- vim.keymap.set("n", "<leader>C", "<cmd>silent! wall<cr><cmd>vert Compile<cr>", { desc = "Compile" })
+		-- vim.keymap.set("n", "<leader>c", "<cmd>silent! wall<cr><cmd>vert Recompile<cr>", { desc = "Recompile" })
+		vim.keymap.set("n", "<leader>C", "<cmd>silent! wall<cr><cmd>Compile<cr><C-f>", { desc = "Compile" })
+		vim.keymap.set("n", "<leader>c", "<cmd>silent! wall<cr><cmd>Recompile<cr>", { desc = "Recompile" })
 		vim.keymap.set("n", "<leader>j", "<cmd>NextError<cr>", { desc = "Next error" })
 		vim.keymap.set("n", "<leader>k", "<cmd>PrevError<cr>", { desc = "Previous error" })
 	end,

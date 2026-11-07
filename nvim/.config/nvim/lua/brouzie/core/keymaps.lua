@@ -4,10 +4,6 @@
 local nmap = function(lhs, rhs, desc) vim.keymap.set("n", lhs, rhs, { desc = desc }) end
 local xmap = function(lhs, rhs, desc) vim.keymap.set("x", lhs, rhs, { desc = desc }) end
 
--- Move by visual lines when there is no count (useful with "wrap" set)
-vim.keymap.set("n", "j", [[v:count == 0 ? "gj" : "j"]], { expr = true, desc = "Down (wrap-aware)" })
-vim.keymap.set("n", "k", [[v:count == 0 ? "gk" : "k"]], { expr = true, desc = "Up (wrap-aware)" })
-
 nmap("<Esc>", "<Cmd>nohlsearch<CR>", "Clear search highlight")
 
 -- Move between windows
@@ -114,3 +110,9 @@ local copy_file_path = function()
 end
 
 nmap_leader("yp", copy_file_path, "Copy file path")
+
+local toggle_diagnostics = function()
+    vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+end
+
+nmap_leader("tD", toggle_diagnostics, "Toggle on/off All Diagnostics")

@@ -15,7 +15,7 @@ require("brouzie.core.options")
 require("brouzie.core.keymaps")
 require("brouzie.lazy")
 require("brouzie.transparency") -- Before the theme loads, so it applies to it
-require("brouzie.theme") -- Omarchy's theme if present, else 'lua/current-theme.lua'
+require("current-theme")
 require("brouzie.terminalpop")
 require("brouzie.todopop")
 require("brouzie.ui-input")

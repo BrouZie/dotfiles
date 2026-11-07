@@ -415,3 +415,8 @@ vim.keymap.set("n", "<leader>tc",
 vim.keymap.set("n", "<leader>tu",
     safe_markdown_cmd("g/- \\[x\\]/s/\\[x\\]/[ ]/", "Marked all tasks as undone"),
     vim.tbl_extend("force", opts, { desc = "Mark all tasks undone" }))
+
+-- Move by visual lines when there is no count (useful with "wrap" set)
+vim.keymap.set("n", "j", [[v:count == 0 ? "gj" : "j"]], { expr = true, desc = "Down (wrap-aware)" })
+vim.keymap.set("n", "k", [[v:count == 0 ? "gk" : "k"]], { expr = true, desc = "Up (wrap-aware)" })
+
