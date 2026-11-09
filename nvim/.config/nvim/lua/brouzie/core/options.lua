@@ -19,7 +19,8 @@ vim.o.winborder      = "rounded"  -- Use border in floating windows
 vim.o.wrap           = false      -- Don"t visually wrap lines
 
 -- Cursor shape per mode: block in Normal, bar in Insert, underline in Replace
-vim.o.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkon500-blinkoff500-blinkwait500"
+-- vim.o.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkon500-blinkoff500-blinkwait500"
+vim.o.guicursor = "i-n-v-c-sm:block,a:blinkon500-blinkoff500-blinkwait500"
 
 -- Folds (see `:h fold-commands`, `:h zM`, `:h zR`, `:h zA`, `:h zj`)
 vim.o.foldlevel   = 10       -- Fold nothing by default; set to 0 or 1 to fold
